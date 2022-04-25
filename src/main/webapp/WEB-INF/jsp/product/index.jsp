@@ -143,13 +143,8 @@
                         <div class="card mb-4">
                             <div class="card-header">
                                 <a href="insertform"><button>新增產品</button></a>
+                                <a href="batchform"><button>批次處理</button></a>
                                 <button id="showAll">顯示全部產品</button>
-
-                                <form class="form-inline" action="/batchform" >
-									<button id="batchButton">批次處理</button>
-									<input id="batchHiddenInput" type="test" name="idList" value="" />
-								</form>
-
                             </div>
                             <div class="card-body">
                                 <table id="datatablesSimple">

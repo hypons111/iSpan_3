@@ -8,6 +8,11 @@
 </head>
 
 <body>
+<h1>批次更新</h1>
+
+		<button id="batchButton">批次更新</button>
+
+<button id="showAll">顯示全部產品</button>
 	<table border="1">
 		<thead>
 			<tr>
@@ -16,11 +21,11 @@
 					class="columnSearchInput" type="text" placeholder="" value="">
 				</th>
 				<th>
-					<p class="producttype" id="sort">種類</p> <input id="type"
+					<p class="productname" id="sort">名稱</p> <input id="name"
 					class="columnSearchInput" type="text" placeholder="" value="">
 				</th>
 				<th>
-					<p class="productname" id="sort">名稱</p> <input id="name"
+					<p class="producttype" id="sort">種類</p> <input id="type"
 					class="columnSearchInput" type="text" placeholder="" value="">
 				</th>
 				<th>
@@ -38,33 +43,39 @@
 
 			</tr>
 			<tr>
+			<td></td>
 				<td></td>
-				<td id='typeList' width='155px'> <input id='producttype'  type='text' class='產品種類 type' name='type' value=''></td>
-				<td></td>
+				<td id='typeList' width='155px'><input id='producttype' type='text' class='產品種類 type' name='type' value=''>
+					<p></p>
+				</td>
 				<td><select id='stockEdit' class='產品存量 stock' name='stock'>
 						<option value=''></option>
 						<option value='+'>+</option>
 						<option value='='>=</option>
 						<option value='-'>-</option>
-				</select> <input id='stockValue' type='text' class='產品存量' name='stock'
-					value=""></td>
-				<td><select id='costEdit' class='產品買價 cost' name='cost'>
+					</select>
+					<input id='newStockInput' type='text' class='產品存量' name='stock' value="0">
+					<p></p>
+				</td>
+				<td>
+					<select id='costEdit' class='產品買價 cost' name='cost'>
 						<option value=''></option>
 						<option value='+'>+</option>
 						<option value='='>=</option>
 						<option value='-'>-</option>
-				</select> <input id='costValue' type='text' class='產品買價' name='cost' value="">
+					</select>
+					<input id='newCostInput' type='text' class='產品買價' name='cost' value="0">
 					<p id="costUnit"></p></td>
-				<td><select id='priceEdit' class='產品售價 price' name='price'>
+				<td>
+					<select id='priceEdit' class='產品售價 price' name='price'>
 						<option value=''></option>
 						<option value='+'>+</option>
 						<option value='='>=</option>
 						<option value='-'>-</option>
-				</select> <input id='priceValue' type='text' class='產品售價' name='price'
-					value="">
-					<p id="priceUnit"></p></td>
-				<td><button id='submit'>更新</button></td>
-				<td><input type=reset></td>
+					</select>
+					<input id='newPriceInput' type='text' class='產品售價' name='price' value="0">
+					<p id="priceUnit"></p>
+				</td>
 			</tr>
 
 

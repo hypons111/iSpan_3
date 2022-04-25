@@ -1,5 +1,4 @@
 const BASE_URL = "http://localhost:8081/admin/product/productjson"
-const batchButton = document.querySelector('#batchButton')
 const batchHiddenInput = document.querySelector('#batchHiddenInput')
 const resultTable = document.querySelector("#resultTable")
 const id = document.querySelector('#id')
@@ -27,7 +26,6 @@ axios
 
 // 顯示全部產品
 function showData(data) {
-console.log(data)
 	currentData = []
 	currentData.push(...data)
 
@@ -139,24 +137,6 @@ function addSortEventListeners() {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// 批次處理
-
-batchButton.addEventListener("click", (event) => {
-	
-	idList = getSearchList()
-	
-})
-
-function getSearchList() {
-	const idList = []
-	for (let i = 0; i < resultTable.children.length; i++) {
-		idList.push(document.querySelector("#resultTable").children[i].children[1].innerText)
-	}
-	return idList
-}
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // 更新版刪取
 /*

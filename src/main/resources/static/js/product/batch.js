@@ -1,92 +1,102 @@
-const PRODUCT_URL = "http://localhost:8081/admin/product/productjson";
-const PRODUCT_TYPE_URL = "http://localhost:8081/admin/product/producttypejson";
-const date = new Date()
+const BASE_URL = "http://localhost:8081/admin/product/productjson"
+
+const resultTable = document.querySelector("#resultTable")
 const columnSearchInputs = document.querySelectorAll('.columnSearchInput')
-const typeInput = document.querySelector("#typeValue")
-const stockInput = document.querySelector("#stockValue")
+//const batchHiddenInput = document.querySelector('#batchHiddenInput')
+//const id = document.querySelector('#id')
+
+const newStockInput = document.querySelector("#newStockInput")
 const stockEdit = document.querySelector("#stockEdit")
-const costInput = document.querySelector("#costValue")
+const newCostInput = document.querySelector("#newCostInput")
 const costEdit = document.querySelector("#costEdit")
-const costUnit = document.querySelector("#costUnit")
-const priceInput = document.querySelector("#priceValue")
+const costtUnit = document.querySelector("#costUnit")
+const newPriceInput = document.querySelector("#newPriceInput")
 const priceEdit = document.querySelector("#priceEdit")
-const priceUnit = document.querySelector("#priceUnit")
-const submit = document.querySelector("#submit")
-const typeList = document.querySelector("#typeList")
+const pricetUnit = document.querySelector("#priceUnit")
+const batchButton = document.querySelector("#batchButton")
+
+
+
+const sorts = document.querySelectorAll('#sort')
+let currentData = []
 let rawData = ""
+let sortStates = "ASC"
 
 
-
-
-// 取得 product type json
-axios.get(PRODUCT_TYPE_URL)
-	.then(response => {
-		productTypeRawData = response.data
-		showPullDownList()
-	})
-	.catch(error => { console.log(error) })
-
-// 取得 product json
+// 取得 json
 axios
-	.get(PRODUCT_URL)
+	.get(BASE_URL)
 	.then(response => {
 		rawData = response.data
 		showData(response.data)
-		addListeners()
+		addSearchEventListeners()
+		addSortEventListeners()
 	})
 	.catch(error => console.log(error));
 
-///////////////////////////////////////////////////////////////////
 
+// 顯示全部產品
 function showData(data) {
+
 	currentData = []
 	currentData.push(...data)
+
 	contents = ""
 	for (let i = 0; i < data.length; i++) {
 		contents += "<tr>"
-		contents += "<td>" + data[i].productid + "</td>"
-		contents += "<td>" + data[i].producttype + "</td>"
+		contents += "<td>" + data[i].systemid + "</td>"
 		contents += "<td>" + data[i].productname + "</td>"
+		contents += "<td>" + data[i].producttype + "</td>"
 		contents += "<td>" + data[i].productstock + "</td>"
 		contents += "<td>" + data[i].productcost + "</td>"
 		contents += "<td>" + data[i].productprice + "</td>"
+
 	}
 	resultTable.innerHTML = contents
 }
 
-// 產品種類輸入變成 pull down menu
-function showPullDownList() {
-	let typeContent = "	<select id='producttype' class='type' name='type'>"
-	for (let i = 0; i < productTypeRawData.length; i++) {
-		typeContent += `<option value='${productTypeRawData[i].producttypename}'>${productTypeRawData[i].producttypename}</option>`
-	}
-	typeContent += "<option value='newProductType'>新增產品種類</option></select>"
-	typeList.innerHTML = typeContent
+
+
+// 顯示全部產品按鈕 listener
+document.querySelector('#showAll').addEventListener('click', () => {
+	showData(rawData)
+	columnSearchInputs.forEach(columnSearchInput => {
+		columnSearchInput.value = ""
+	})
+})
+
+// 搜尋按鈕 listener
+function addSearchEventListeners() {
+	columnSearchInputs.forEach(columnSearchInput => {
+		columnSearchInput.addEventListener("keyup", (event) => {
+			showData(ultraFuckingSearch())
+		})
+	})
 }
 
-////////////////////////////////////////////////////////////////////
 
 // 搜尋
 function ultraFuckingSearch() {
 	let tempData = rawData
-
-	const KEY = ["productid", "producttype", "productname", "productstock", "productcost", "productprice"]
-
+	const KEY = ["systemid", "producttype", "productname", "productstock", "productcost", "productprice"]
 
 	for (let k = 0; k < columnSearchInputs.length; k++) {
-
 		if (columnSearchInputs[k].value !== "") {
-			if (k === 1) {
-				tempData = tempData.filter(product => product.producttype.includes(columnSearchInputs[1].value))
+			if (k === 0) {
+				tempData = tempData.filter(product => product.systemid.trim().includes(columnSearchInputs[k].value).trim())
+			} else if (k === 1) {
+				tempData = tempData.filter(product => product.productname.toLowerCase().trim().includes(columnSearchInputs[k].value.toLowerCase().trim()))
 			} else if (k === 2) {
-				tempData = tempData.filter(product => product.productname.toLowerCase().includes(columnSearchInputs[2].value.toLowerCase()))
+				tempData = tempData.filter(product => product.producttype.toLowerCase().trim().includes(columnSearchInputs[k].value.toLowerCase().trim()))
+			} else if (k === 6) {
+				tempData = tempData.filter(product => product.productdescription.toLowerCase().trim().includes(columnSearchInputs[k].value.toLowerCase().trim()))
 			} else {
 				if (columnSearchInputs[k].value.includes("<")) {
-					tempData = tempData.filter(product => product[KEY[k]] < Number(columnSearchInputs[k].value.slice(1)))
+					tempData = tempData.filter(product => product[KEY[k]] < Number(columnSearchInputs[k].value.trim().slice(1)))
 				} else if (columnSearchInputs[k].value.includes(">")) {
-					tempData = tempData.filter(product => product[KEY[k]] > Number(columnSearchInputs[k].value.slice(1)))
+					tempData = tempData.filter(product => product[KEY[k]] > Number(columnSearchInputs[k].value.trim().slice(1)))
 				} else {
-					tempData = tempData.filter(product => product[KEY[k]] == Number(columnSearchInputs[k].value))
+					tempData = tempData.filter(product => product[KEY[k]] == Number(columnSearchInputs[k].value.trim()))
 				}
 			}
 		}
@@ -94,39 +104,63 @@ function ultraFuckingSearch() {
 	return tempData
 }
 
-////////////////////////////////////////////////////////////////////
 
-function addListeners() {
 
-	// 成本調整單位 listener
-	costEdit.addEventListener("change", (event) => {
-		setUnitCharacter(event.target, costUnit)
-	})
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	// 售價調整單位 listener
-	priceEdit.addEventListener("change", (event) => {
-		setUnitCharacter(event.target, priceUnit)
-	})
+// 排序按鈕 listener
 
-	// submit 按鈕 listener
-	submit.addEventListener("click", (event) => {
-		trimInputs()
-		checkInputs()
-		submitInputs()
-	})
-
-	// 搜尋按鈕 listener
-	columnSearchInputs.forEach(columnSearchInput => {
-		columnSearchInput.addEventListener("keyup", (event) => {
-			showData(ultraFuckingSearch())
+function addSortEventListeners() {
+	sorts.forEach(sort => {
+		sort.addEventListener('click', (event) => {
+			event.preventDefault()
+			let attribute = event.target.classList[0]
+			if (sortStates === "ASC") {
+				currentData.sort((a, b) => {
+					if (a[attribute] < b[attribute]) { return -1 }
+					if (a[attribute] > b[attribute]) { return 1 }
+					return 0
+				})
+				sortStates = "DESC"
+			} else {
+				currentData.sort((a, b) => {
+					if (a[attribute] < b[attribute]) { return 1 }
+					if (a[attribute] > b[attribute]) { return -1 }
+					return 0
+				})
+				sortStates = "ASC"
+			}
+			showData(currentData)
 		})
 	})
-
 }
 
-////////////////////////////////////////////////////////////////////
 
-// 轉換單位
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// 批次處理
+batchButton.addEventListener("click", event => {
+	trimValues()
+	checkValues()
+	submitValues()
+})
+
+function getSearchList() {
+	const batchList = []
+	for (let i = 0; i < resultTable.children.length; i++) {
+		batchList.push(document.querySelector("#resultTable").children[i].children[0].innerText)
+	}
+	return batchList
+}
+
+costEdit.addEventListener("change", (event) => {
+	setUnitCharacter(event.target, costUnit)
+})
+
+priceEdit.addEventListener("change", (event) => {
+	setUnitCharacter(event.target, priceUnit)
+})
+
 function setUnitCharacter(editTarget, unitTarget) {
 	if (editTarget.value === "+" || editTarget.value === "-") {
 		unitTarget.innerText = "%"
@@ -136,37 +170,60 @@ function setUnitCharacter(editTarget, unitTarget) {
 		unitTarget.innerText = ""
 	}
 }
-////////////////////////////////////////////////////////////////////
 
-function trimInputs() {
+function submitValues() {
+
+	console.log("submitValues")
+
+	let formData = new FormData()
+
+	if (newStockInput.value !== "") {
+		console.log("stock " +  stockEdit.value + " " + newStockInput.value)
+	}
+	if (newCostInput.value !== "") {
+		console.log("cost " + costEdit.value + " " + newCostInput.value)
+	}
+	if (newPriceInput.value !== "") {
+		console.log("price " + priceEdit.value + " " + newPriceInput.value)
+	}
+
+	formData.append("newStock", newStockInput.value)
+	formData.append("stockEdit", stockEdit.value)
+
+	formData.append("newCost", newCostInput.value)
+	formData.append("costEdit", costEdit.value)
+
+	formData.append("newPrice", newPriceInput.value)
+	formData.append("priceEdit", priceEdit.value)
+
+	formData.append("batchList", getSearchList())
+
+	axios({
+		url: "/admin/product/batch",
+		method: "put",
+		data: formData,
+		headers: { 'Content-Type': 'multipart/form-data' }
+	})
+		.then(response => {
+			window.location = "/admin/product/productindex"
+		})
+		.catch(error => {
+			console.log(error)
+		})
+}
+
+
+function trimValues() {
 	console.log("parseValues")
 	document.querySelectorAll("input").forEach(input => {
 		input.value = input.value.trim()
 	})
 }
 
-function checkInputs() {
+function checkValues() {
 	console.log("checkValues")
-
-}
-
-function submitInputs() {
-	console.log("submitValues")
-
-	if (typeInput.value !== "") {
-		console.log(typeInput.value)
-	}
-	if (stockInput.value !== "") {
-		console.log(stockEdit.value)
-		console.log(stockInput.value)
-	}
-	if (costInput.value !== "") {
-		console.log(costEdit.value)
-		console.log(costInput.value)
-	}
-	if (priceValue.value !== "") {
-		console.log(priceEdit.value)
-		console.log(priceInput.value)
-	}
+	document.querySelectorAll("input").forEach(input => {
+		input.value = input.value.trim()
+	})
 }
 
