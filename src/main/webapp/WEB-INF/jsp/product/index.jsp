@@ -356,7 +356,7 @@
 		crossorigin="anonymous"></script>
 <!-- 	<script src="/js/common/datatables-simple-demo.js"></script> -->
 
-	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script	src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"></script>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script

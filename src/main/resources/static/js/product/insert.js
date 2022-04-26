@@ -119,7 +119,7 @@ function addEventListeners(data) {
 		// 送出請求
 		if (switcher === "on") {
 			document.querySelector(".產品編號").disabled = false
-			sendRequests()
+			//sendRequests()
 		}
 	})
 }

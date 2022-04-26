@@ -84,7 +84,7 @@
 
 		</tbody>
 	</table>
-	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script	src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"></script>
 	<script src="/js/product/batch.js"></script>
 </body>
 
