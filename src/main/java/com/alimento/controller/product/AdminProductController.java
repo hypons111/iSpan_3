@@ -2,6 +2,7 @@ package com.alimento.controller.product;
 
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
@@ -12,6 +13,7 @@ import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -80,11 +82,13 @@ public class AdminProductController {
 
 	@GetMapping("/delete")
 	@ResponseBody
-	public ModelAndView deleteById(@RequestParam("systemid") int systemid, @RequestParam("productid") String productid) {
+	public ModelAndView deleteById(@RequestParam("systemid") int systemid, @RequestParam("productid") String productid) throws FileNotFoundException {
 		System.out.println("do delete By Id");
 		productService.deleteById(systemid);
 		
-		File image = new File("C:/DataSource/workspace/SpringBootHW_withTemplates.zip_expanded/SpringBootHW/target/classes/static/image/product/" + productid + ".jpg");
+		String target = ResourceUtils.getURL("classpath:").getPath()+"static/image/product/";
+		File image = new File(target + productid + ".jpg");
+		
 		image.delete();
 		
 		return new ModelAndView("redirect:/admin/product/productindex");
@@ -92,15 +96,17 @@ public class AdminProductController {
 
 	@PostMapping("/uploadimage")
 	@ResponseBody
-	public void uploadimage(@RequestParam("imageFile") MultipartFile file, @RequestParam("imageName") String imageName) {
+	public void uploadimage(@RequestParam("imageFile") MultipartFile file, @RequestParam("imageName") String imageName) throws FileNotFoundException {
 		if(file.getOriginalFilename().length() != 0) {
 			System.out.println("do upload image");
-//			String location = "C:/DataSource/workspace/SpringBootHW_withTemplates.zip_expanded/SpringBootHW/src/main/resources/static/image/product/";
-			String target = "C:/DataSource/workspace/SpringBootHW_withTemplates.zip_expanded/SpringBootHW/target/classes/static/image/product/";
+			
+			// 絕對路徑
+//			String target = "C:/DataSource/workspace/SpringBootHW_withTemplates.zip_expanded/SpringBootHW/target/classes/static/image/product/";
+			// 相對路徑
+			String target = ResourceUtils.getURL("classpath:").getPath()+"static/image/product/";
+			
 			try {
-//				file.transferTo(new java.io.File(location + imageName));
 				file.transferTo(new java.io.File(target + imageName));
-//				System.out.println("已上傳到: " + location);
 				System.out.println("已上傳到: " + target);
 			} catch (IOException e) {
 				e.printStackTrace();
