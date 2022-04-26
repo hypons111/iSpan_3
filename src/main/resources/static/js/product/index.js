@@ -39,6 +39,7 @@ function showData(data) {
 		contents += "<td>" + data[i].productcost + "</td>"
 		contents += "<td>" + data[i].productprice + "</td>"
 		contents += "<td>" + data[i].productdescription + "</td>"
+		contents += "<td>" + data[i].productstate + "</td>"
 		contents += "<td><img src='/image/product/" + data[i].productimage + "?" + Math.random() + "' ></td>"
 		contents += "<td><a href=updateform?systemid=" + data[i].systemid + "><button>修改</button></a></td>"
 		contents += "<td><a href=delete?systemid=" + data[i].systemid + "&productid=" + data[i].productid + "><button id='deleteButton'data-productid='" + data[i].productid + "' >刪除</button></a></td></tr>"

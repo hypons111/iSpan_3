@@ -46,6 +46,11 @@ public class Product implements Serializable {
 
 	@Column(name = "PRODUCTDESCRIPTION")
 	private String productdescription;
+	
+	@Column(name = "PRODUCTSTATE")
+	private boolean productstate;
+
+
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
@@ -127,7 +132,14 @@ public class Product implements Serializable {
 		this.productdescription = productdescription;
 	}
 
-	
+	public boolean isProductstate() {
+		return productstate;
+	}
+
+	public void setProductstate(boolean productstate) {
+		this.productstate = productstate;
+	}
+
 
 
 }

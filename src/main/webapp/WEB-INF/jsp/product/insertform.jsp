@@ -20,6 +20,7 @@
 					<th>產品買價</th>
 					<th>產品售價</th>
 					<th>產品介紹 </th>
+					<th>產品狀態 </th>
 					<th>產品圖片</th>
 				</tr>
 			</thead>
@@ -31,6 +32,8 @@
 				<td>								<input id='productcost' 		type='text' class='產品買價 input' name='cost' value=''></td>
 				<td>								<input id='productprice' 		type='text' class='產品售價 input' name='price' value=''></td>
 				<td>								<input id='productdescription' 	type='text' class='產品介紹 input' name='description' value=''></td>
+				<td>								<input type="checkbox" id="productstate" value="true" checked="checked">
+  													<label for="productstate">上架</label></td>
 				<td id='imageTD'>					<input id='productimage' 		type='file' class='產品圖片 input' name='imageFile' value=''></td>
 				<td><button id='submitButton'>新增</button></td>
 			</tbody>

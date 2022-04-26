@@ -89,6 +89,7 @@ function addEventListeners(data) {
 
 			// 檢查空白輸入
 			if (inputs[i].value === "") {
+			console.log(inputs[i])
 				switcher = "off"
 				inputChecking.innerHTML += "請輸入" + inputs[i].classList[0] + "<br>"
 			}
@@ -136,6 +137,11 @@ function sendRequests() {
 
 // 更新資料
 function insert() {
+	let productstate = false
+	if(document.getElementById("productstate").checked) {
+		productstate = true
+	}
+
 	return axios.post('/admin/product/save', {
 		productid: document.getElementById("productid").value,
 		producttype: document.getElementById("producttype").value,
@@ -144,6 +150,8 @@ function insert() {
 		productcost: document.getElementById("productcost").value,
 		productprice: document.getElementById("productprice").value,
 		productdescription: document.getElementById("productdescription").value,
+//		productstate: document.getElementById("productstate").value,
+		productstate: productstate,
 		productimage: document.getElementById("productid").value + ".jpg"
 	})
 		.then(function(response) {

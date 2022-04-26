@@ -26,6 +26,10 @@ function getTargetProduct(data) {
 }
 
 function showData(data) {
+let productstate = "<td><input id='productstate' type='checkbox' value='true' ><label for='productstate'>上架</label></td>"
+if(data.productstate) {
+	productstate = "<td><input id='productstate' type='checkbox' value='true' checked='false'><label for='productstate'>上架</label></td>"
+}
 	let contents = "<tr>"
 	contents += "<td>								<input id='systemid'			type='hidden' class=''				name='type'			value='" + data.systemid + "'></td>"
 	contents += "<td id='id'>						<input id='productid'			type='text' class='產品編號 input'	name='id'			value='" + data.productid + "' disabled ></td>"
@@ -35,6 +39,7 @@ function showData(data) {
 	contents += "<td>								<input id='productcost'			type='text' class='產品買價 input'	name='cost'	 		value='" + data.productcost + "'></td>"
 	contents += "<td>								<input id='productprice'		type='text' class='產品售價 input'	name='price' 		value='" + data.productprice + "'></td>"
 	contents += "<td>								<input id='productdescription'	type='text' class='產品介紹 input'	name='description'	value='" + data.productdescription + "'></td>"
+	contents += productstate
 	contents += "<td id='imageTD'>					<input id='productimage' 		type='file'	class='產品圖片 input'	name='imageFile'	value=''></td>"
 	contents += "<td><button id='submitButton'>更新</button></td>"
 	contents += "<td><input type=reset></td>"
@@ -148,6 +153,11 @@ function sendRequests() {
 
 // 更新資料
 function update() {
+	let productstate = false
+	if(document.getElementById("productstate").checked) {
+		productstate = true
+	}
+
 	return axios.post('/admin/product/save', {
 		systemid: document.getElementById("systemid").value,
 		producttype: document.getElementById("producttype").value,
@@ -157,6 +167,7 @@ function update() {
 		productcost: document.getElementById("productcost").value,
 		productprice: document.getElementById("productprice").value,
 		productdescription: document.getElementById("productdescription").value,
+		productstate: productstate,
 		productimage: document.getElementById("productid").value + ".jpg"
 	})
 		.then(function(response) {
