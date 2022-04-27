@@ -42,8 +42,6 @@ function showPullDownList(data) {
 
 
 function addEventListeners(data) {
-
-
 	const inputs = document.querySelectorAll("table .input")
 	const typeList = document.querySelector("#typeList")
 	const submitButton = document.getElementById("submitButton")
@@ -81,7 +79,6 @@ function addEventListeners(data) {
 		inputChecking.innerHTML = ""
 		let switcher = "on"
 
-		console.log(inputs)
 		for (let i = 0; i < inputs.length - 1; i++) {
 
 			// 刪除前後空白
@@ -119,7 +116,7 @@ function addEventListeners(data) {
 		// 送出請求
 		if (switcher === "on") {
 			document.querySelector(".產品編號").disabled = false
-			//sendRequests()
+			sendRequests()
 		}
 	})
 }
