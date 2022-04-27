@@ -147,7 +147,6 @@ function insert() {
 		productcost: document.getElementById("productcost").value,
 		productprice: document.getElementById("productprice").value,
 		productdescription: document.getElementById("productdescription").value,
-//		productstate: document.getElementById("productstate").value,
 		productstate: productstate,
 		productimage: document.getElementById("productid").value + ".jpg"
 	})

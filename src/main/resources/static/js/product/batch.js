@@ -13,6 +13,7 @@ const costtUnit = document.querySelector("#costUnit")
 const newPriceInput = document.querySelector("#newPriceInput")
 const priceEdit = document.querySelector("#priceEdit")
 const pricetUnit = document.querySelector("#priceUnit")
+
 const batchButton = document.querySelector("#batchButton")
 
 
@@ -31,6 +32,7 @@ axios
 		showData(response.data)
 		addSearchEventListeners()
 		addSortEventListeners()
+		addStateSwitchButtonListener()
 	})
 	.catch(error => console.log(error));
 
@@ -50,7 +52,7 @@ function showData(data) {
 		contents += "<td>" + data[i].productstock + "</td>"
 		contents += "<td>" + data[i].productcost + "</td>"
 		contents += "<td>" + data[i].productprice + "</td>"
-
+		contents += "<td>" + data[i].productstate + "</td>"
 	}
 	resultTable.innerHTML = contents
 }
@@ -138,6 +140,19 @@ function addSortEventListeners() {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+// 更改產品狀態按鈕 listener
+function addStateSwitchButtonListener() {
+	const stateSwitchButton = document.querySelector("#stateSwitchButton")
+
+	stateSwitchButton.addEventListener("click", event => {
+		event.target.parentElement.innerHTML = `<input type="checkbox" id="productstate" value="true" checked="checked"><label for="productstate">上架</label>`
+	})
+	
+}
+
+
+
 // 批次處理
 batchButton.addEventListener("click", event => {
 	trimValues()
@@ -172,8 +187,10 @@ function setUnitCharacter(editTarget, unitTarget) {
 }
 
 function submitValues() {
-
-	console.log("submitValues")
+	let productstate = false
+	if(document.getElementById("productstate").checked) {
+		productstate = true
+	}
 
 	let formData = new FormData()
 
@@ -195,6 +212,8 @@ function submitValues() {
 
 	formData.append("newPrice", newPriceInput.value)
 	formData.append("priceEdit", priceEdit.value)
+
+	formData.append("newState", productstate)
 
 	formData.append("batchList", getSearchList())
 

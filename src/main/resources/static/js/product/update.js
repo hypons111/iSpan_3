@@ -40,9 +40,7 @@ if(data.productstate) {
 	contents += "<td>								<input id='productprice'		type='text' class='產品售價 input'	name='price' 		value='" + data.productprice + "'></td>"
 	contents += "<td>								<input id='productdescription'	type='text' class='產品介紹 input'	name='description'	value='" + data.productdescription + "'></td>"
 	contents += productstate
-	contents += "<td id='imageTD'>					<input id='productimage' 		type='file'	class='產品圖片 input'	name='imageFile'	value=''></td>"
-	contents += "<td><button id='submitButton'>更新</button></td>"
-	contents += "<td><input type=reset></td>"
+	contents += "<td id='imageTD'>					<input id='productimage' 		type='file'	class='產品圖片 input'	name='imageFile'	value=''></td></tr>"
 	resultTable.innerHTML = contents
 	oldProductName = data.productname
 }

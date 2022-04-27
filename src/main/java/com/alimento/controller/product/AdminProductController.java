@@ -123,6 +123,7 @@ public class AdminProductController {
 			@RequestParam("costEdit") String costEdit, 
 			@RequestParam("newPrice") double newPrice,
 			@RequestParam("priceEdit") String priceEdit, 
+			@RequestParam("newState") boolean newState, 
 			@RequestParam("batchList") List<Integer> batchList			
 			) {
 		for(int i=0; i<batchList.size(); i++) {
@@ -157,6 +158,8 @@ public class AdminProductController {
 				product.get().setProductprice(oldPrice - (oldPrice * (newPrice /  100)));
 			}
 
+			product.get().setProductstate(newState);
+			
 			productService.save(product.get());
 		}
 	}

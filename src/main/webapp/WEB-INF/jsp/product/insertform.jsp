@@ -263,9 +263,9 @@
 						</div>
 					</div>
 					<div class="card mb-4">
-<!-- 						<div class="card-header"> -->
-<!-- 							<i class="fas fa-table me-1"></i> XXX清單 -->
-<!-- 						</div> -->
+						<div class="card-header">
+							<button id='submitButton'>確定</button>
+						</div>
 						<div class="card-body">
 
 							<!--<a href="XX/add" class="btn btn-primary">新增</a>-->
@@ -305,7 +305,7 @@
 											checked="checked"> <label for="productstate">上架</label></td>
 										<td id='imageTD'><input id='productimage' type='file'
 											class='產品圖片 input' name='imageFile' value=''></td>
-										<td><button id='submitButton'>新增</button></td>
+
 									</tbody>
 								</table>
 							</form>

@@ -27,11 +27,9 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <!-- DataTables -->
-<link rel="stylesheet" type="text/css"
-	href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
-<script type="text/javascript" charset="utf8"
-	src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
-
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+<link href="/css/product/insertstyles.css" rel="stylesheet" />
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
 <!-- SweetAlert2 -->
 <script type="text/javascript"
 	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.8/dist/sweetalert2.all.min.js"></script>
@@ -272,7 +270,7 @@
 							<!--<a href="XX/add" class="btn btn-primary">新增</a>-->
 
 							<!--DataTables放入位置-->
-							<table id="datatablesSimple">
+							<table  id="datatablesSimple">
 								<thead>
 									<tr></tr>
 									<tr>
