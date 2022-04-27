@@ -14,6 +14,7 @@ import javax.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ResourceUtils;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -80,9 +81,10 @@ public class AdminProductController {
 		productService.save(product);
 	}
 
-	@GetMapping("/delete")
-	@ResponseBody
-	public ModelAndView deleteById(@RequestParam("systemid") int systemid, @RequestParam("productid") String productid) throws FileNotFoundException {
+	@DeleteMapping("/delete")
+	public ModelAndView deleteById(
+			@RequestParam("systemid") int systemid,
+			@RequestParam("productid") String productid) throws FileNotFoundException {
 		System.out.println("do delete By Id");
 		productService.deleteById(systemid);
 		
@@ -157,8 +159,9 @@ public class AdminProductController {
 			} else if (priceEdit.equals("-")) {
 				product.get().setProductprice(oldPrice - (oldPrice * (newPrice /  100)));
 			}
+			
+				product.get().setProductstate(newState);				
 
-			product.get().setProductstate(newState);
 			
 			productService.save(product.get());
 		}

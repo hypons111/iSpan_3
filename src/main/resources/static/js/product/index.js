@@ -4,7 +4,7 @@ const resultTable = document.querySelector("#resultTable")
 const id = document.querySelector('#id')
 const columnSearchs = document.querySelectorAll('.columnSearch')
 const columnSearchInputs = document.querySelectorAll('.columnSearchInput')
-
+const deleteButton = document.querySelector("#deleteButton")
 const sorts = document.querySelectorAll('#sort')
 let currentData = []
 let rawData = ""
@@ -19,7 +19,9 @@ axios
 		showData(response.data)
 		addSearchEventListeners()
 		addSortEventListeners()
+		addDeleteButtonEventListener()
 		setDataTable()
+
 	})
 	.catch(error => console.log(error));
 
@@ -42,7 +44,8 @@ function showData(data) {
 		contents += "<td>" + data[i].productstate + "</td>"
 		contents += "<td><img src='/image/product/" + data[i].productimage + "?" + Math.random() + "' ></td>"
 		contents += "<td><a href=updateform?systemid=" + data[i].systemid + "><button>修改</button></a></td>"
-		contents += "<td><a href=delete?systemid=" + data[i].systemid + "&productid=" + data[i].productid + "><button id='deleteButton'data-productid='" + data[i].productid + "' >刪除</button></a></td></tr>"
+		//		contents += "<td><a href=delete?systemid=" + data[i].systemid + "&productid=" + data[i].productid + "><button id='deleteButton' data-productid='" + data[i].productid + "' >刪除</button></a></td></tr>"
+		contents += "<td><button id='deleteButton' data-productid='" + data[i].productid + "' data-systemid='" + data[i].systemid + "'>刪除</button></td></tr>"
 	}
 	resultTable.innerHTML = contents
 }
@@ -140,17 +143,37 @@ function addSortEventListeners() {
 
 
 // 更新版刪取
-/*
+
 function addDeleteButtonEventListener() {
 	resultTable.addEventListener("click", (event) => {
-		const rows = document.querySelectorAll("#deleteButton")
-		for (let i = 0; i < rows.length; i++) {
-			if (rows[i].dataset.productid === event.target.dataset.productid) {
+		if (event.target.id === "deleteButton") {
+
+			if (window.confirm("確定要刪除嗎?")) {
+				const rows = document.querySelectorAll("#deleteButton")
+				for (let i = 0; i < rows.length; i++) {
+					if (rows[i].dataset.productid === event.target.dataset.productid) {
+
+
+						let formData = new FormData()
+						formData.append('systemid', rows[i].dataset.systemid)
+						formData.append('productid', rows[i].dataset.productid)
+						axios({
+							url: "/admin/product/delete",
+							method: "delete",
+							data: formData,
+							headers: { 'Content-Type': 'multipart/form-data' }
+						})
+							.catch(error => { })
+						event.target.parentElement.parentElement.remove()
+					}
+
+				}
 
 			}
+
 		}
 	})
 }
-*/
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

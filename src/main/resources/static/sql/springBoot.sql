@@ -54,7 +54,7 @@ INSERT INTO product VALUES
 
 
 
-
+use productDB
 select * from product ORDER BY productid
 select * from ProductType ORDER BY producttypeid
 

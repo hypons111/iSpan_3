@@ -188,8 +188,12 @@ function setUnitCharacter(editTarget, unitTarget) {
 
 function submitValues() {
 	let productstate = false
+	try {
 	if(document.getElementById("productstate").checked) {
 		productstate = true
+	}
+	} catch {
+		productstate = "notSuchThing"	
 	}
 
 	let formData = new FormData()
