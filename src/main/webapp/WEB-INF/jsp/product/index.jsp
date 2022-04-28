@@ -18,7 +18,7 @@
 	href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
 	rel="stylesheet" />
 <link href="/css/common/styles.css" rel="stylesheet" />
-<link href="/css/product/styles.css" rel="stylesheet" />
+<link href="/css/product/index.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js"
 	crossorigin="anonymous"></script>
 
@@ -28,7 +28,6 @@
 
 <!-- DataTables -->
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
-<link href="/css/product/insertstyles.css" rel="stylesheet" />
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
 <!-- SweetAlert2 -->
 <script type="text/javascript"
@@ -261,9 +260,9 @@
 					</div>
 					<div class="card mb-4">
 						<div class="card-header">
-							<a href="insertform"><button>新增產品</button></a> <a
-								href="batchform"><button>批次處理</button></a>
 							<button id="showAll">顯示全部產品</button>
+							<a href="insertform"><button>新增產品</button></a>
+							<a href="batchform"><button>批次處理</button></a>
 						</div>
 						<div class="card-body">
 

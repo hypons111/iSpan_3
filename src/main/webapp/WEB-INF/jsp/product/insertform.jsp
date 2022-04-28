@@ -18,7 +18,7 @@
 	href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
 	rel="stylesheet" />
 <link href="/css/common/styles.css" rel="stylesheet" />
-<link href="/css/product/insertstyles.css" rel="stylesheet" />
+<link href="/css/product/insert.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js"
 	crossorigin="anonymous"></script>
 
@@ -264,7 +264,7 @@
 					</div>
 					<div class="card mb-4">
 						<div class="card-header">
-							<button id='submitButton'>確定</button>
+							<button id='submitButton'>新增</button>
 						</div>
 						<div class="card-body">
 
@@ -299,10 +299,11 @@
 											class='產品買價 input' name='cost' value=''></td>
 										<td><input id='productprice' type='text'
 											class='產品售價 input' name='price' value=''></td>
-										<td><input id='productdescription' type='text'
-											class='產品介紹 input' name='description' value=''></td>
-										<td><input type="checkbox" id="productstate" value="true"
-											checked="checked"> <label for="productstate">上架</label></td>
+<!-- 										<td><input id='productdescription' type='text' class='產品介紹 input' name='description' value=''></td> -->
+										
+										<td><textarea id='productdescription' class='產品介紹 input' name='description' rows='10' cols='50' value=''></textarea></td>
+										
+										<td><input type="checkbox" id="productstate" value="true"  checked="checked"> <label for="productstate">上架</label></td>
 										<td id='imageTD'><input id='productimage' type='file'
 											class='產品圖片 input' name='imageFile' value=''></td>
 

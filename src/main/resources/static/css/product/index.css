@@ -1,0 +1,32 @@
+#sort {
+	margin-bottom: 5px;
+}
+
+img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	height: 70px;
+}
+
+input {
+	width: 100%;
+}
+
+.card-header {
+	display: flex;
+	justify-content: end;
+}
+
+.card-header a {
+	margin-left: 5px;
+}
+
+#showAll {
+	margin-right: auto;
+}
+
+.dataTable-top {
+	display: flex;
+	justify-content: start;
+}

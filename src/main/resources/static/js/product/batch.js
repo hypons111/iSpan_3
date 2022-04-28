@@ -156,17 +156,10 @@ function addStateSwitchButtonListener() {
 // 批次處理
 batchButton.addEventListener("click", event => {
 	trimValues()
-//	checkValues()
+	//	checkValues()
 	submitValues()
 })
 
-function getSearchList() {
-	const batchList = []
-	for (let i = 0; i < resultTable.children.length; i++) {
-		batchList.push(document.querySelector("#resultTable").children[i].children[0].innerText)
-	}
-	return batchList
-}
 
 costEdit.addEventListener("change", (event) => {
 	setUnitCharacter(event.target, costUnit)
@@ -186,53 +179,81 @@ function setUnitCharacter(editTarget, unitTarget) {
 	}
 }
 
-function submitValues() {
-	let productstate = false
-	let stateEditSwitch = false
-
-	if (document.getElementById("productstate")) {
-			stateEditSwitch = true
-		if (document.getElementById("productstate").checked) {
-			productstate = true
-		}
-	}
-
-	let formData = new FormData()
-
-	formData.append("newStock", newStockInput.value)
-	formData.append("stockEdit", stockEdit.value)
-
-	formData.append("newCost", newCostInput.value)
-	formData.append("costEdit", costEdit.value)
-
-	formData.append("newPrice", newPriceInput.value)
-	formData.append("priceEdit", priceEdit.value)
-
-	formData.append("newState", productstate)
-	formData.append("stateEditSwitch", stateEditSwitch)
-
-	formData.append("batchList", getSearchList())
-
-	axios({
-		url: "/admin/product/batch",
-		method: "put",
-		data: formData,
-		headers: { 'Content-Type': 'multipart/form-data' }
-	})
-		.then(response => {
-			window.location = "/admin/product/productindex"
-		})
-		.catch(error => {
-			console.log(error)
-		})
-}
-
-
+// 刪除輸入框的 space
 function trimValues() {
 	document.querySelectorAll("input").forEach(input => {
 		input.value = input.value.trim()
 	})
 }
+
+// 取得要修改的產品 id 的陣列
+function getProductList() {
+	const batchList = []
+	for (let i = 0; i < resultTable.children.length; i++) {
+		batchList.push(document.querySelector("#resultTable").children[i].children[0].innerText)
+	}
+	return batchList
+}
+
+function submitValues() {
+
+	if (window.confirm("確定要修改嗎?")) {
+
+		let productstate = false
+
+		if (document.getElementById("productstate")) {
+			if (document.getElementById("productstate").checked) {
+				productstate = true
+			}
+		}
+
+		let formData = new FormData()
+		
+		if (newStockInput.value !== "") {
+			formData.append("newStock", newStockInput.value)
+		} else {
+			formData.append("newStock", 0)
+		}
+		
+		if (newCostInput.value !== "") {
+			formData.append("newCost", newCostInput.value)
+		} else {
+			formData.append("newCost", 0)
+		}
+		
+		if (newPriceInput.value !== "") {
+			formData.append("newPrice", newPriceInput.value)
+		} else {
+			formData.append("newPrice", 0)
+		}
+
+		formData.append("newState", productstate)
+
+		formData.append("stockEdit", stockEdit.value)
+		formData.append("costEdit", costEdit.value)
+		formData.append("priceEdit", priceEdit.value)
+
+		formData.append("batchList", getProductList())
+
+		axios({
+			url: "/admin/product/batch",
+			method: "put",
+			data: formData,
+			headers: { 'Content-Type': 'multipart/form-data' }
+		})
+			.then(response => {
+				window.location = "/admin/product/productindex"
+			})
+			.catch(error => {
+				console.log(error)
+			})
+	}
+}
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*
 function checkValues() {

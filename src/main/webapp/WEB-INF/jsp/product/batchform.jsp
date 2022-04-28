@@ -18,7 +18,7 @@
 	href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
 	rel="stylesheet" />
 <link href="/css/common/styles.css" rel="stylesheet" />
-<link href="/css/product/insertstyles.css" rel="stylesheet" />
+<link href="/css/product/batch.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js"
 	crossorigin="anonymous"></script>
 
@@ -265,7 +265,7 @@
 					<div class="card mb-4">
 						<div class="card-header">
 							<button id="showAll">顯示全部產品</button>
-							<button id="batchButton">確定</button>
+							<button id="batchButton">更新</button>
 						</div>
 						<div class="card-body">
 
@@ -274,32 +274,32 @@
 								<thead>
 									<tr>
 										<th>
-											<p class="productid" id="sort">編號</p> <input id="id"
-											class="columnSearchInput" type="text" placeholder="請輸入編號搜尋條件" value="">
+											<p class="productid" id="sort">編號</p>
+											<input id="id" class="columnSearchInput" type="text" placeholder="搜尋編號" value="">
 										</th>
 										<th>
-											<p class="productname" id="sort">名稱</p> <input id="name"
-											class="columnSearchInput" type="text" placeholder="請輸入名稱搜尋條件" value="">
+											<p class="productname" id="sort">名稱</p>
+											<input id="name" class="columnSearchInput" type="text" placeholder="搜尋名稱" value="">
 										</th>
 										<th>
-											<p class="producttype" id="sort">種類</p> <input id="type"
-											class="columnSearchInput" type="text" placeholder="請輸入種類搜尋條件" value="">
+											<p class="producttype" id="sort">種類</p>
+											<input id="type" class="columnSearchInput" type="text" placeholder="搜尋種類" value="">
 										</th>
 										<th>
-											<p class="productstock" id="sort">庫存</p> <input id="stock"
-											class="columnSearchInput" type="text" placeholder="請輸入庫存搜尋條件" value="">
+											<p class="productstock" id="sort">庫存</p>
+											<input id="stock" class="columnSearchInput" type="text" placeholder="搜尋庫存" value="">
 										</th>
 										<th>
-											<p class="productcost" id="sort">成本</p> <input id="cost"
-											class="columnSearchInput" type="text" placeholder="請輸入成本搜尋條件" value="">
+											<p class="productcost" id="sort">成本</p>
+											<input id="cost" class="columnSearchInput" type="text" placeholder="搜尋成本" value="">
 										</th>
 										<th>
-											<p class="productprice" id="sort">售價</p> <input id="price"
-											class="columnSearchInput" type="text" placeholder="請輸入售價搜尋條件" value="">
+											<p class="productprice" id="sort">售價</p>
+											<input id="price" class="columnSearchInput" type="text" placeholder="搜尋售價" value="">
 										</th>
 										<th>
-											<p class="productstate" id="sort">狀態</p> <input id="state"
-											class="columnSearchInput" type="text" placeholder="請輸入狀態搜尋條件" value="">
+											<p class="productstate" id="sort">狀態</p>
+											<input id="state" class="columnSearchInput" type="text" placeholder="搜尋狀態" value="">
 										</th>
 									</tr>
 									<tr>
@@ -307,33 +307,33 @@
 										<td></td>
 										<td></td>
 										<td>
-											<select style="width: 100%" id='stockEdit' class='產品庫存 stock' name='stock'>
+											<select id='stockEdit' class='產品庫存 stock' name='stock'>
 												<option value=''></option>
 												<option value='+'>+</option>
 												<option value='='>=</option>
 												<option value='-'>-</option>
 											</select>
-											<input id='newStockInput' type='text' class='產品庫存' name='stock' value="0">
+											<input id='newStockInput' type='text' class='產品庫存' name='stock' value="">
 											<label id="" for="newStockInput"></label>
 										</td>
 										<td>
-											<select style="width: 100%" id='costEdit' class='產品買價 cost' name='cost'>
+											<select id='costEdit' class='產品買價 cost' name='cost'>
 												<option value=''></option>
 												<option value='+'>+</option>
 												<option value='='>=</option>
 												<option value='-'>-</option>
 											</select>
-											<input id='newCostInput' type='text' class='產品買價' name='cost' value="0">
+											<input id='newCostInput' type='text' class='產品買價' name='cost' value="">
 											<label id="costUnit" for="newCostInput"></label>
 										</td>
 										<td>
-											<select style="width: 100%" id='priceEdit' class='產品售價 price' name='price'>
+											<select id='priceEdit' class='產品售價 price' name='price'>
 												<option value=''></option>
 												<option value='+'>+</option>
 												<option value='='>=</option>
 												<option value='-'>-</option>
 											</select>
-											<input id='newPriceInput' type='text' class='產品售價' name='price' value="0">
+											<input id='newPriceInput' type='text' class='產品售價' name='price' value="">
 											<label id="priceUnit" for="newPriceInput"></label>
 										</td>
 										<td style="text-align: center; vertical-align: middle;">

@@ -136,13 +136,14 @@ public class AdminProductController {
 		return new ModelAndView("redirect:/admin/product/productindex");
 	}
 			
-//(required=false)
+
 	@PutMapping("/batch")
 	@ResponseBody
-	public void batch(@RequestParam("newStock") int newStock, @RequestParam("stockEdit") String stockEdit,
+	public void batch(
+			@RequestParam("newStock") int newStock, @RequestParam("stockEdit") String stockEdit,
 			@RequestParam("newCost") double newCost, @RequestParam("costEdit") String costEdit,
 			@RequestParam("newPrice") double newPrice, @RequestParam("priceEdit") String priceEdit,
-			@RequestParam("newState") boolean newState, @RequestParam("stateEditSwitch") boolean stateEditSwitch,
+			@RequestParam(required=false,  name="newState") boolean newState,
 			@RequestParam("batchList") List<Integer> batchList) {
 		for (int i = 0; i < batchList.size(); i++) {
 
@@ -175,8 +176,8 @@ public class AdminProductController {
 			} else if (priceEdit.equals("-")) {
 				product.get().setProductprice(oldPrice - (oldPrice * (newPrice / 100)));
 			}
-
-			if (stateEditSwitch == true) {
+			
+			if (newState == true || newState == false) {
 				product.get().setProductstate(newState);
 			}
 

@@ -1,0 +1,30 @@
+th {
+  border: 1px solid #dee2e6;
+
+}
+
+td {
+  border: 1px solid #dee2e6;
+
+}
+
+input {
+	width: 100%;
+}
+
+#imageTD {
+	width: 15%;
+}
+
+.card-header {
+	display: flex;
+	justify-content: end;
+}
+
+#submitButton {
+	margin-right: 5px;
+}
+
+td {
+	text-align: center;
+}

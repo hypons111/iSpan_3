@@ -44,17 +44,23 @@ function showData(data) {
 		contents += "<td>" + data[i].productstate + "</td>"
 		contents += "<td><img src='/image/product/" + data[i].productimage + "?" + Math.random() + "' ></td>"
 		contents += "<td><a href=updateform?systemid=" + data[i].systemid + "><button>修改</button></a></td>"
-		//		contents += "<td><a href=delete?systemid=" + data[i].systemid + "&productid=" + data[i].productid + "><button id='deleteButton' data-productid='" + data[i].productid + "' >刪除</button></a></td></tr>"
 		contents += "<td><button id='deleteButton' data-productid='" + data[i].productid + "' data-systemid='" + data[i].systemid + "'>刪除</button></td></tr>"
 	}
 	resultTable.innerHTML = contents
 }
 
 function setDataTable() {
-	const datatablesSimple = document.getElementById('datatablesSimple');
+	const datatablesSimple = document.getElementById('datatablesSimple')
 	if (datatablesSimple) {
-		new simpleDatatables.DataTable(datatablesSimple);
+		new simpleDatatables.DataTable(datatablesSimple)
 	}
+	
+//	let text = document.querySelector(".dataTable-dropdown label").innerHTML; 
+//	document.querySelector(".dataTable-dropdown label").innerHTML = text.replace("entries per page", "項結果")
+
+	document.querySelector(".dataTable-search").remove()
+	
+	
 }
 
 
@@ -79,20 +85,23 @@ function addSearchEventListeners() {
 // 搜尋
 function ultraFuckingSearch() {
 	let tempData = rawData
-	const KEY = ["", "productid", "", "productstock", "productcost", "productprice"]
+	const KEY = ["", "productid", "", "productstock", "productcost", "productprice", "productstate"]
 
 
 	for (let k = 0; k < columnSearchInputs.length; k++) {
-
+	
 		if (columnSearchInputs[k].value !== "") {
 			if (k === 0) {
 				tempData = tempData.filter(product => product.producttype.toLowerCase().includes(columnSearchInputs[0].value))
 			} else if (k === 1) {
-				tempData = tempData.filter(product => product.productid.includes(columnSearchInputs[1].value))
+				tempData = tempData.filter(product => product.productid.includes(columnSearchInputs[k].value))
 			} else if (k === 2) {
-				tempData = tempData.filter(product => product.productname.toLowerCase().includes(columnSearchInputs[2].value.toLowerCase()))
+				tempData = tempData.filter(product => product.productname.toLowerCase().includes(columnSearchInputs[k].value.toLowerCase()))
 			} else if (k === 6) {
-				tempData = tempData.filter(product => product.productdescription.toLowerCase().includes(columnSearchInputs[6].value.toLowerCase()))
+				tempData = tempData.filter(product => product.productdescription.toLowerCase().includes(columnSearchInputs[k].value.toLowerCase()))
+			} else if (k === 7) {
+				tempData.forEach(product => {console.log()})
+				tempData = tempData.filter(product => product.productstate.toString().match(columnSearchInputs[k].value))
 			} else {
 				if (columnSearchInputs[k].value.includes("<")) {
 					tempData = tempData.filter(product => product[KEY[k]] < Number(columnSearchInputs[k].value.slice(1)))
@@ -143,7 +152,6 @@ function addSortEventListeners() {
 
 
 // 更新版刪取
-
 function addDeleteButtonEventListener() {
 	resultTable.addEventListener("click", (event) => {
 		if (event.target.id === "deleteButton") {
@@ -152,7 +160,6 @@ function addDeleteButtonEventListener() {
 				const rows = document.querySelectorAll("#deleteButton")
 				for (let i = 0; i < rows.length; i++) {
 					if (rows[i].dataset.productid === event.target.dataset.productid) {
-
 
 						let formData = new FormData()
 						formData.append('systemid', rows[i].dataset.systemid)
