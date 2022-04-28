@@ -1,0 +1,10 @@
+.pi-pic {
+	weight: 260px;
+	height: 260px;
+	display: flex;
+	align-items: center;
+}
+
+.pi-pic img{
+	vertical-align: middle;
+}

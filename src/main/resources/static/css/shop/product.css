@@ -1,0 +1,7 @@
+.sc-item {
+	height: 40px;
+}
+
+.sc-item:hover {
+	background-color: #e7ab3c;
+}
