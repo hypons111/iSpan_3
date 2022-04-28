@@ -1,6 +1,5 @@
 package com.alimento.controller.product;
 
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -56,120 +55,6 @@ public class AdminProductController {
 		return productTypeService.findAll();
 	}
 
-	@GetMapping("/getby{id}")
-	@ResponseBody
-	public Optional<Product> axiosGetById(@PathParam("id") int id) {
-		System.out.println("GET id: " + id);
-		return productService.findById(id);
-	}
-	
-	@PostMapping("/save")
-	@ResponseBody
-	public void save(@RequestBody Product product) {
-		System.out.println("do save");
-		
-		// 判斷是否要新增產品種類
-		Set<String> productTypeNameResultSet = new HashSet<>();
-		for (ProductType productType : productTypeService.findAll()) {
-			productTypeNameResultSet.add(productType.getProducttypename());
-		}
-		if (productTypeNameResultSet.add(product.getProducttype())) {
-			ProductType pt = new ProductType();
-			pt.setProducttypename(product.getProducttype());
-			productTypeService.save(pt);
-		}
-		productService.save(product);
-	}
-
-	@DeleteMapping("/delete")
-	public ModelAndView deleteById(
-			@RequestParam("systemid") int systemid,
-			@RequestParam("productid") String productid) throws FileNotFoundException {
-		System.out.println("do delete By Id");
-		productService.deleteById(systemid);
-		
-		String target = ResourceUtils.getURL("classpath:").getPath()+"static/image/product/";
-		File image = new File(target + productid + ".jpg");
-		
-		image.delete();
-		
-		return new ModelAndView("redirect:/admin/product/productindex");
-	}
-
-	@PostMapping("/uploadimage")
-	@ResponseBody
-	public void uploadimage(@RequestParam("imageFile") MultipartFile file, @RequestParam("imageName") String imageName) throws FileNotFoundException {
-		if(file.getOriginalFilename().length() != 0) {
-			System.out.println("do upload image");
-			
-			// 絕對路徑
-//			String target = "C:/DataSource/workspace/SpringBootHW_withTemplates.zip_expanded/SpringBootHW/target/classes/static/image/product/";
-			// 相對路徑
-			String target = ResourceUtils.getURL("classpath:").getPath()+"static/image/product/";
-			
-			try {
-				file.transferTo(new java.io.File(target + imageName));
-				System.out.println("已上傳到: " + target);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-
-	@PutMapping("/batch")
-	@ResponseBody
-	public void batch(
-			@RequestParam("newStock") int newStock, 
-			@RequestParam("stockEdit") String stockEdit, 
-			@RequestParam("newCost") double newCost, 
-			@RequestParam("costEdit") String costEdit, 
-			@RequestParam("newPrice") double newPrice,
-			@RequestParam("priceEdit") String priceEdit, 
-			@RequestParam("newState") boolean newState, 
-			@RequestParam("batchList") List<Integer> batchList			
-			) {
-		for(int i=0; i<batchList.size(); i++) {
-			
-			Optional<Product> product = productService.findById(batchList.get(i));
-			
-			int oldStock = product.get().getProductstock();
-			double oldCost = product.get().getProductcost();
-			double oldPrice = product.get().getProductprice();
-
-			if (stockEdit.equals("=")) {
-				product.get().setProductstock(newStock);
-			} else if (stockEdit.equals("+")) {
-				product.get().setProductstock(oldStock + newStock);
-			} else if (stockEdit.equals("-")) {
-				product.get().setProductstock(oldStock - newStock);
-			}
-
-			if (costEdit.equals("=")) {
-				product.get().setProductcost(newCost);
-			} else if (costEdit.equals("+")) {
-				product.get().setProductcost(oldCost + (oldCost * (newCost /  100)));
-			} else if (costEdit.equals("-")) {
-				product.get().setProductcost(oldCost - (oldCost * (newCost /  100)));
-			}
-
-			if (priceEdit.equals("=")) {
-				product.get().setProductprice(newPrice);
-			} else if (priceEdit.equals("+")) {
-				product.get().setProductprice(oldPrice + (oldPrice * (newPrice /  100)));
-			} else if (priceEdit.equals("-")) {
-				product.get().setProductprice(oldPrice - (oldPrice * (newPrice /  100)));
-			}
-			
-				product.get().setProductstate(newState);				
-
-			
-			productService.save(product.get());
-		}
-	}
-	
-	
-	
-	
 	///////////////////////////////////////////////////////////////////////////
 
 	@GetMapping("/productindex")
@@ -194,6 +79,118 @@ public class AdminProductController {
 	public String batchFrom() {
 		System.out.println("batch page");
 		return "product/batchform";
+	}
+
+	///////////////////////////////////////////////////////////////////////////
+
+	@PostMapping("/save")
+	@ResponseBody
+	public void save(@RequestBody Product product) {
+		System.out.println("do save");
+
+		// 判斷是否要新增產品種類
+		Set<String> productTypeNameResultSet = new HashSet<>();
+		for (ProductType productType : productTypeService.findAll()) {
+			productTypeNameResultSet.add(productType.getProducttypename());
+		}
+		if (productTypeNameResultSet.add(product.getProducttype())) {
+			ProductType pt = new ProductType();
+			pt.setProducttypename(product.getProducttype());
+			productTypeService.save(pt);
+		}
+		productService.save(product);
+	}
+
+	@PostMapping("/uploadimage")
+	@ResponseBody
+	public void uploadimage(@RequestParam("imageFile") MultipartFile file, @RequestParam("imageName") String imageName)
+			throws FileNotFoundException {
+		if (file.getOriginalFilename().length() != 0) {
+			System.out.println("do upload image");
+
+			// 絕對路徑
+//			String target = "C:/DataSource/workspace/SpringBootHW_withTemplates.zip_expanded/SpringBootHW/target/classes/static/image/product/";
+			// 相對路徑
+			String target = ResourceUtils.getURL("classpath:").getPath() + "static/image/product/";
+
+			try {
+				file.transferTo(new java.io.File(target + imageName));
+				System.out.println("已上傳到: " + target);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	@DeleteMapping("/delete")
+	public ModelAndView deleteById(@RequestParam("systemid") int systemid, @RequestParam("productid") String productid)
+			throws FileNotFoundException {
+		System.out.println("do delete By Id");
+		productService.deleteById(systemid);
+
+		String target = ResourceUtils.getURL("classpath:").getPath() + "static/image/product/";
+		File image = new File(target + productid + ".jpg");
+
+		image.delete();
+
+		return new ModelAndView("redirect:/admin/product/productindex");
+	}
+			
+//(required=false)
+	@PutMapping("/batch")
+	@ResponseBody
+	public void batch(@RequestParam("newStock") int newStock, @RequestParam("stockEdit") String stockEdit,
+			@RequestParam("newCost") double newCost, @RequestParam("costEdit") String costEdit,
+			@RequestParam("newPrice") double newPrice, @RequestParam("priceEdit") String priceEdit,
+			@RequestParam("newState") boolean newState, @RequestParam("stateEditSwitch") boolean stateEditSwitch,
+			@RequestParam("batchList") List<Integer> batchList) {
+		for (int i = 0; i < batchList.size(); i++) {
+
+			Optional<Product> product = productService.findById(batchList.get(i));
+
+			int oldStock = product.get().getProductstock();
+			double oldCost = product.get().getProductcost();
+			double oldPrice = product.get().getProductprice();
+
+			if (stockEdit.equals("=")) {
+				product.get().setProductstock(newStock);
+			} else if (stockEdit.equals("+")) {
+				product.get().setProductstock(oldStock + newStock);
+			} else if (stockEdit.equals("-")) {
+				product.get().setProductstock(oldStock - newStock);
+			}
+
+			if (costEdit.equals("=")) {
+				product.get().setProductcost(newCost);
+			} else if (costEdit.equals("+")) {
+				product.get().setProductcost(oldCost + (oldCost * (newCost / 100)));
+			} else if (costEdit.equals("-")) {
+				product.get().setProductcost(oldCost - (oldCost * (newCost / 100)));
+			}
+
+			if (priceEdit.equals("=")) {
+				product.get().setProductprice(newPrice);
+			} else if (priceEdit.equals("+")) {
+				product.get().setProductprice(oldPrice + (oldPrice * (newPrice / 100)));
+			} else if (priceEdit.equals("-")) {
+				product.get().setProductprice(oldPrice - (oldPrice * (newPrice / 100)));
+			}
+
+			if (stateEditSwitch == true) {
+				product.get().setProductstate(newState);
+			}
+
+			productService.save(product.get());
+		}
+	}
+
+	///////////////////////////////////////////////////////////////////////////
+
+	@GetMapping("/getby{id}")
+	@ResponseBody
+	public Optional<Product> axiosGetById(@PathParam("id") int id) {
+		System.out.println("GET id: " + id);
+		return productService.findById(id);
 	}
 
 }

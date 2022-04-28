@@ -148,7 +148,7 @@ function addStateSwitchButtonListener() {
 	stateSwitchButton.addEventListener("click", event => {
 		event.target.parentElement.innerHTML = `<input type="checkbox" id="productstate" value="true" checked="checked"><label for="productstate">上架</label>`
 	})
-	
+
 }
 
 
@@ -156,7 +156,7 @@ function addStateSwitchButtonListener() {
 // 批次處理
 batchButton.addEventListener("click", event => {
 	trimValues()
-	checkValues()
+//	checkValues()
 	submitValues()
 })
 
@@ -188,25 +188,16 @@ function setUnitCharacter(editTarget, unitTarget) {
 
 function submitValues() {
 	let productstate = false
-	try {
-	if(document.getElementById("productstate").checked) {
-		productstate = true
-	}
-	} catch {
-		productstate = "notSuchThing"	
+	let stateEditSwitch = false
+
+	if (document.getElementById("productstate")) {
+			stateEditSwitch = true
+		if (document.getElementById("productstate").checked) {
+			productstate = true
+		}
 	}
 
 	let formData = new FormData()
-
-	if (newStockInput.value !== "") {
-		console.log("stock " +  stockEdit.value + " " + newStockInput.value)
-	}
-	if (newCostInput.value !== "") {
-		console.log("cost " + costEdit.value + " " + newCostInput.value)
-	}
-	if (newPriceInput.value !== "") {
-		console.log("price " + priceEdit.value + " " + newPriceInput.value)
-	}
 
 	formData.append("newStock", newStockInput.value)
 	formData.append("stockEdit", stockEdit.value)
@@ -218,6 +209,7 @@ function submitValues() {
 	formData.append("priceEdit", priceEdit.value)
 
 	formData.append("newState", productstate)
+	formData.append("stateEditSwitch", stateEditSwitch)
 
 	formData.append("batchList", getSearchList())
 
@@ -237,16 +229,16 @@ function submitValues() {
 
 
 function trimValues() {
-	console.log("parseValues")
 	document.querySelectorAll("input").forEach(input => {
 		input.value = input.value.trim()
 	})
 }
 
+/*
 function checkValues() {
 	console.log("checkValues")
 	document.querySelectorAll("input").forEach(input => {
 		input.value = input.value.trim()
 	})
 }
-
+*/
