@@ -112,10 +112,22 @@ function addFavoriteButtonListener () {
 	favoriteButton.addEventListener("click", event => {
 		event.preventDefault()
 		console.log(targetProduct.productid)
-//		
-//		axios.post("/favorite", {
-//			productid: targetProduct.productid,
-//		}
 		
+		let formData = new FormData()
+		formData.append('productid', targetProduct.productid)
+		
+		axios({
+			url: "/home/favorite",
+			method: "post",
+			data: formData,
+			headers: { 'Content-Type': 'multipart/form-data' }
+		})
+		.then(response => {
+//			location.href = "/admin/product/productindex"
+			console.log(response)
+		})
+		.catch(error => {
+			console.log(error)
+		})
 	})
 }

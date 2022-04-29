@@ -5,7 +5,9 @@ import javax.websocket.server.PathParam;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -22,11 +24,11 @@ public class ProductController {
 		return "home_user/product";
 	}
 	
-	@GetMapping("/favorite{pid}")
+	@PostMapping("/favorite")
 	@ResponseBody
-	public String favproduct(HttpServletRequest request, @PathParam("id") String pid) {
+	public String favproduct(HttpServletRequest request, @RequestParam("productid") String productid) {
 	
-		System.out.println(pid);
+		System.out.println(productid);
 		
 		Object login = request.getSession().getAttribute("login");
 		
