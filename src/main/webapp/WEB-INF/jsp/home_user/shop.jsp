@@ -185,31 +185,19 @@ nav {
 				<div
 					class="col-lg-3 col-md-6 col-sm-8 order-2 order-lg-1 produts-sidebar-filter">
 					<div class="filter-widget">
-						<h4 class="fw-title">Categories</h4>
+						<h4 class="fw-title">產品種類</h4>
 						<!-- 插入產品種品名稱 -->
 						<ul class="filter-catagories"></ul>
 					</div>
 
 					<div class="filter-widget">
-						<h4 class="fw-title">Price</h4>
+						<h4 class="fw-title">價格範圍</h4>
 						<div class="filter-range-wrap">
-							<div class="range-slider">
-								<div class="price-input">
-									<input type="text" id="minamount"> <input type="text"
-										id="maxamount">
-								</div>
-							</div>
-							<div
-								class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
-								data-min="33" data-max="98">
-								<div class="ui-slider-range ui-corner-all ui-widget-header"></div>
-								<span tabindex="0"
-									class="ui-slider-handle ui-corner-all ui-state-default"></span>
-								<span tabindex="0"
-									class="ui-slider-handle ui-corner-all ui-state-default"></span>
+							<div class="slider">
+								<input id="price" type="range" min="" max="" value="" name="rgb">
+								<input id='priceResult' class="border" placeholder="" value=""></input>
 							</div>
 						</div>
-						<a href="#" class="filter-btn">Filter</a>
 					</div>
 
 					<!-- 保留 -->
@@ -217,7 +205,7 @@ nav {
 					<div class="filter-widget"></div>
 					<div class="filter-widget"></div>
 					<!-- /保留 -->
-					
+
 				</div>
 				<div class="col-lg-9 order-1 order-lg-2">
 					<div class="product-show-option">
@@ -237,13 +225,9 @@ nav {
 						</div>
 					</div>
 					<div class="product-list">
-						<div class="row">
-							
-						</div>
+						<div class="row"></div>
 					</div>
-					<div class="loading-more">
-						<i class="icon_loading"></i> <a href="#"> Loading More </a>
-					</div>
+
 				</div>
 			</div>
 		</div>
@@ -367,7 +351,8 @@ nav {
 	<!-- Footer Section End -->
 
 	<!-- Js Plugins -->
-
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"></script>
 	<script src="/js/shop/jquery-3.3.1.min.js"></script>
 	<script src="/js/shop/bootstrap.min.js"></script>
 	<script src="/js/shop/jquery-ui.min.js"></script>
@@ -378,7 +363,6 @@ nav {
 	<script src="/js/shop/jquery.slicknav.js"></script>
 	<script src="/js/shop/owl.carousel.min.js"></script>
 	<script src="/js/shop/main.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"></script>
 	<script src="/js/shop/shop.js"></script>
 </body>
 

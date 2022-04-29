@@ -5,6 +5,9 @@ const urlParams = new URLSearchParams(queryString)
 const targetProducTtype = urlParams.get('producttypename')
 const filterCatagories = document.querySelector(".filter-catagories")
 const productListRow = document.querySelector(".product-list .row")
+const slider = document.querySelector('.slider')
+
+let filteredProductList
 
 axios.get(PRODUCT_TYPE_URL)
 	.then(response => {
@@ -14,10 +17,11 @@ axios.get(PRODUCT_TYPE_URL)
 
 axios.get(PRODUCT_URL)
 	.then(response => {
-		showProduct(response.data)
+		setFilteredProductList(response.data)
+		showProduct(filteredProductList)
+		showPriceRange(filteredProductList)
 	})
 	.catch(error => { console.log(error) })
-
 
 // 顯示產品種類
 function showProductType(data) {
@@ -26,10 +30,18 @@ function showProductType(data) {
 	})
 }
 
+
+// 取得目標產品
+function setFilteredProductList(data) {
+	filteredProductList = data.filter(product => product.producttype === targetProducTtype && product.productstate == true)
+}
+
+
 // 顯示產品
-function showProduct(data) {
-	const filterdProductList = data.filter(product => product.producttype === targetProducTtype && product.productstate == true)
-	filterdProductList.forEach(product => {
+function showProduct(filteredProductList) {
+	productListRow.innerHTML = ""
+	filteredProductList.forEach(product => {
+	
 		productListRow.innerHTML += `
 			<div class="col-lg-4 col-sm-6">
 				<div class="product-item">
@@ -41,7 +53,7 @@ function showProduct(data) {
 						</div>
 						<ul>
 							<li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-							<li class="quick-view"><a href="#">+ Quick View</a></li>
+							<li class="quick-view"><a href="/home/product?productid=${product.productid}">+ Quick View</a></li>
 							<li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
 						</ul>
 					</div>
@@ -55,3 +67,39 @@ function showProduct(data) {
 	})
 }
 
+
+// 顯示價錢範圍
+function showPriceRange(data) {
+	const price = document.querySelector('#price')
+	const priceResult = document.querySelector('#priceResult')
+	
+	
+	let min = 99999
+	let max = 0
+	data.filter(product => {
+		if(product.productprice < min) {
+			min = product.productprice
+		} else if(product.productprice > max) {
+			max = product.productprice
+		}
+	})
+	price.min = min
+	price.max = max
+	price.value = max
+	priceResult.value = max
+	
+		
+	slider.addEventListener('click', event => {
+		if(event.target.id === "price") {
+			event.target.nextElementSibling.value = event.target.value	
+			let priceFilterdProductList = data.filter(product => product.productprice <= event.target.nextElementSibling.value)
+			showProduct(priceFilterdProductList)
+		}
+	})
+	
+	priceResult.addEventListener('input', event => {
+		event.target.previousElementSibling.value = event.target.value	
+		let priceFilterdProductList = data.filter(product => product.productprice <= event.target.value)
+		showProduct(priceFilterdProductList)
+	})
+}

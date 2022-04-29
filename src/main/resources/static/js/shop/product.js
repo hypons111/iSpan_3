@@ -7,8 +7,10 @@ const filterCatagories = document.querySelector(".filter-catagories")
 const productDetil = document.querySelector(".col-lg-10 .row")
 let targetProduct
 
+//setNodes
+let favoriteButton
 let sizeButtonGroup
-let newPproductPrice
+let newProductPrice
 let oldPproductPrice
 
 axios.get(PRODUCT_TYPE_URL)
@@ -23,6 +25,7 @@ axios.get(PRODUCT_URL)
 		showProduct(targetProduct)
 		setNodes()
 		addsizeButtonGroupListener()
+		addFavoriteButtonListener()
 	})
 	.catch(error => { console.log(error) })
 
@@ -36,7 +39,6 @@ function showProductType(data) {
 
 // 顯示產品
 function showProduct(product) {
-console.log(product)
 	productDetil.innerHTML += `
 						<div class="col-lg-6">
 							<div class="product-pic-zoom">
@@ -48,7 +50,7 @@ console.log(product)
 							<div class="product-details">
 								<div class="pd-title">
 									<h3>${product.productname}</h3>
-									<a href="#" class="heart-icon"><i class="icon_heart_alt"></i></a>
+									<a id="favorite" href="" class="heart-icon"><i class="icon_heart_alt"></i></a>
 								</div>
 								<div class="pd-rating">
 									<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
@@ -57,7 +59,7 @@ console.log(product)
 								</div>
 								<div class="pd-desc">
 									<p>${product.productdescription}</p>
-									<h4>$${product.productprice} <span>${product.productprice * 100}</span></h4>
+									<h4>$${product.productprice} <span>$${product.productprice * 100}</span></h4>
 								</div>
 								
 								<div class="pd-size-choose">
@@ -86,22 +88,34 @@ console.log(product)
 							</div>
 						</div>
 `
-
 }
+
 
 function setNodes() {
 	sizeButtonGroup = document.querySelector(".pd-size-choose")
-	newPproductPrice = document.querySelector(".pd-desc h4")
+	newProductPrice = document.querySelector(".pd-desc h4")
 	oldProductPrice = document.querySelector(".pd-desc span")
+	favoriteButton = document.querySelector("#favorite")
 }
 
+// sml button Listener
 function addsizeButtonGroupListener() {
 	sizeButtonGroup.addEventListener("click", event => {
-	console.log(event.target.parentElement.classList)
 		if(event.target.parentElement.classList[0] === "sc-item") {
-			newPproductPrice.innerText = "$" + targetProduct.productprice * event.target.value
+			newProductPrice.innerText = "$" + targetProduct.productprice * event.target.value
 		}
 	})
 }
 
-
+// favorite button Listener
+function addFavoriteButtonListener () {
+	favoriteButton.addEventListener("click", event => {
+		event.preventDefault()
+		console.log(targetProduct.productid)
+//		
+//		axios.post("/favorite", {
+//			productid: targetProduct.productid,
+//		}
+		
+	})
+}

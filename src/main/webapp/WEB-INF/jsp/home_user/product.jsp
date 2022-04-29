@@ -287,7 +287,7 @@ nav {
 				<div class="col-lg-3">
 					<div class="footer-left">
 						<div class="footer-logo">
-							<a href="#"> <img src="image/shop/footer-logo.png" alt="">
+							<a href="#"> <img src="/image/shop/footer-logo.png" alt="">
 							</a>
 						</div>
 						<ul>
