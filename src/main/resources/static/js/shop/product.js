@@ -18,7 +18,7 @@ let newProductPrice
 let oldPproductPrice
 let incButton
 let decButton
-let smlValue
+let smlValue = 1
 let quantityValue
 
 
@@ -187,6 +187,7 @@ function setQuantityButtons() {
 
 
 function getTotalPrice(oriPrice, size, quantity) {
+console.log(size)
 	newProductPrice.innerText = "$" + oriPrice * size * quantity
 	document.querySelector(".pd-desc").lastElementChild.innerHTML = `原價 $<del>${oriPrice * size * quantity * 10}</del>`
 }

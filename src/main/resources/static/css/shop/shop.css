@@ -12,3 +12,8 @@
 .filter-range-wrap {
 	width: 80%;
 }
+
+nav {
+	font-size: 20px;
+	font-weight: bolder;
+}

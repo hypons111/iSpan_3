@@ -6,23 +6,18 @@ const targetProducTtype = urlParams.get('producttypename')
 const filterCatagories = document.querySelector(".filter-catagories")
 const productListRow = document.querySelector(".product-list .row")
 const slider = document.querySelector('.slider')
+const sortButton = document.querySelector('.nice-select')
+let sortStates = "ASC"
 
 let filteredProductList
+let currentProductList
 
 axios.get(PRODUCT_TYPE_URL)
 	.then(response => {
 		showProductType(response.data)
 	})
 	.catch(error => { console.log(error) })
-
-axios.get(PRODUCT_URL)
-	.then(response => {
-		setFilteredProductList(response.data)
-		showProduct(filteredProductList)
-		showPriceRange(filteredProductList)
-	})
-	.catch(error => { console.log(error) })
-
+	
 // 顯示產品種類
 function showProductType(data) {
 	data.forEach(type => {
@@ -31,9 +26,20 @@ function showProductType(data) {
 }
 
 
+axios.get(PRODUCT_URL)
+	.then(response => {
+		setFilteredProductList(response.data)
+		showProduct(filteredProductList)
+		showPriceRange(currentProductList)
+		addSortButtonListener(currentProductList)
+	})
+	.catch(error => { console.log(error) })
+
+
 // 取得目標產品
 function setFilteredProductList(data) {
 	filteredProductList = data.filter(product => product.producttype === targetProducTtype && product.productstate == true)
+	currentProductList = filteredProductList
 }
 
 
@@ -93,13 +99,49 @@ function showPriceRange(data) {
 		if(event.target.id === "price") {
 			event.target.nextElementSibling.value = event.target.value	
 			let priceFilterdProductList = data.filter(product => product.productprice <= event.target.nextElementSibling.value)
-			showProduct(priceFilterdProductList)
+			currentProductList = priceFilterdProductList
+			showProduct(sorting())
 		}
 	})
 	
 	priceResult.addEventListener('input', event => {
 		event.target.previousElementSibling.value = event.target.value	
 		let priceFilterdProductList = data.filter(product => product.productprice <= event.target.value)
-		showProduct(priceFilterdProductList)
+		currentProductList = priceFilterdProductList
+		showProduct(sorting())
 	})
+	
+	
+}
+
+
+// 排序按鈕 listener
+function addSortButtonListener() {
+	sortButton.addEventListener("click", event => {
+		if(event.target.dataset.value === "DESC") {
+			sortStates = "DESC"
+		} else if (event.target.dataset.value === "ASC") {
+			sortStates = "ASC"
+		}
+		showProduct(sorting())
+	})
+}
+
+function sorting() {
+		if(sortStates === "DESC") {
+			currentProductList.sort((a, b) => {
+				if (a.productprice < b.productprice) { return -1 }
+				if (a.productprice > b.productprice) { return 1 }
+					return 0
+			})
+			return currentProductList
+		} else if (sortStates === "ASC"){
+			currentProductList.sort((a, b) => {
+				if (a.productprice < b.productprice) { return 1 }
+				if (a.productprice > b.productprice) { return -1 }
+				return 0
+			})
+			
+			return currentProductList
+		}
 }

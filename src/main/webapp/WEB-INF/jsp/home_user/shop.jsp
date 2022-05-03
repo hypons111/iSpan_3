@@ -17,29 +17,16 @@
 	rel="stylesheet">
 
 <!-- Css Styles -->
-<link rel="stylesheet" href="/css/shop/bootstrap.min.css"
-	type="text/css">
-<link rel="stylesheet" href="/css/shop/font-awesome.min.css"
-	type="text/css">
-<link rel="stylesheet" href="/css/shop/themify-icons.css"
-	type="text/css">
-<link rel="stylesheet" href="/css/shop/elegant-icons.css"
-	type="text/css">
-<link rel="stylesheet" href="/css/shop/owl.carousel.min.css"
-	type="text/css">
+<link rel="stylesheet" href="/css/shop/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="/css/shop/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" href="/css/shop/themify-icons.css" type="text/css">
+<link rel="stylesheet" href="/css/shop/elegant-icons.css" type="text/css">
+<link rel="stylesheet" href="/css/shop/owl.carousel.min.css" type="text/css">
 <link rel="stylesheet" href="/css/shop/nice-select.css" type="text/css">
-<link rel="stylesheet" href="/css/shop/jquery-ui.min.css"
-	type="text/css">
+<link rel="stylesheet" href="/css/shop/jquery-ui.min.css" type="text/css">
 <link rel="stylesheet" href="/css/shop/slicknav.min.css" type="text/css">
 <link rel="stylesheet" href="/css/shop/style.css" type="text/css">
 <link rel="stylesheet" href="/css/shop/shop.css" type="text/css">
-<style>
-nav {
-	font-size: 20px;
-	font-weight: bolder;
-}
-</style>
-
 </head>
 
 
@@ -213,7 +200,8 @@ nav {
 							<div class="col-lg-7 col-md-7">
 								<div class="select-option">
 									<select class="sorting">
-										<option value="">Default Sorting</option>
+										<option value="ASC">按價錢 - 最高</option>
+										<option value="DESC">按價錢 - 最低</option>
 									</select>
 								</div>
 							</div>
