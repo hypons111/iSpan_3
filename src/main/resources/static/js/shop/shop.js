@@ -29,7 +29,7 @@ function showProductType(data) {
 axios.get(PRODUCT_URL)
 	.then(response => {
 		setFilteredProductList(response.data)
-		showProduct(filteredProductList)
+		showProduct(sorting())
 		showPriceRange(currentProductList)
 		addSortButtonListener(currentProductList)
 	})
@@ -119,10 +119,11 @@ function addSortButtonListener() {
 	sortButton.addEventListener("click", event => {
 		if(event.target.dataset.value === "DESC") {
 			sortStates = "DESC"
+			showProduct(sorting())
 		} else if (event.target.dataset.value === "ASC") {
 			sortStates = "ASC"
+			showProduct(sorting())
 		}
-		showProduct(sorting())
 	})
 }
 
@@ -140,7 +141,6 @@ function sorting() {
 				if (a.productprice > b.productprice) { return -1 }
 				return 0
 			})
-			
 			return currentProductList
 		}
 }
