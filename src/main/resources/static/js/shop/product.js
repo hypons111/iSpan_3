@@ -76,11 +76,8 @@ function showRelativeProducts(data) {
 						</div>
 						<div class="pi-text">
 							<div class="catagory-name">${relativeProduct[i].productname}</div>
-							<a href="#">
-								<h5>Pure Pineapple</h5>
-							</a>
 							<div class="product-price">$${relativeProduct[i].productprice}
-								<span>$${relativeProduct[i].productprice * 10}</span>
+								<span>原價 $<del>${relativeProduct[i].productprice * 10}</del></span>
 							</div>
 						</div>
 					</div>
@@ -117,13 +114,13 @@ function showProduct(product) {
 								
 								<div class="pd-size-choose">
 									<div class="sc-item">
-										<input type="radio" id="sm-size" value="1"> <label for="sm-size">s</label>
+										<input type="radio" id="sm-size" value="1"> <label for="sm-size">小</label>
 									</div>
 									<div class="sc-item">
-										<input type="radio" id="md-size" value="1.25"> <label for="md-size">m</label>
+										<input type="radio" id="md-size" value="1.25"> <label for="md-size">中</label>
 									</div>
 									<div class="sc-item">
-										<input type="radio" id="lg-size" value="1.5"> <label for="lg-size">l</label>
+										<input type="radio" id="lg-size" value="1.5"> <label for="lg-size">大</label>
 									</div>
 								</div>
 								
@@ -131,14 +128,8 @@ function showProduct(product) {
                                     <div class="pro-qty"><span class="dec qtybtn">-</span>
                                         <input type="text" value="1">
                                     <span class="inc qtybtn">+</span></div>
-                                    <a href="#" class="primary-btn pd-cart">Add To Cart</a>
+                                    <a href="#" class="primary-btn pd-cart">加到購物車</a>
                                 </div>
-								
-								<ul class="pd-tags">
-									<li><span>CATEGORIES</span>: More Accessories, Wallets &
-										Cases</li>
-									<li><span>TAGS</span>: Clothing, T-shirt, Woman</li>
-								</ul>
 							</div>
 						</div>
 `

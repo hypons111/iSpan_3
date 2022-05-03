@@ -65,7 +65,6 @@ function showProduct(filteredProductList) {
 					</div>
 					<div class="pi-text">
 						<div class="catagory-name">${product.productname}</div>
-							<a href="#"><h5>Pure Pineapple</h5></a>
 							<div class="product-price">$${product.productprice} <span>${product.productprice * 100}</span></div>
 						</div>
 					</div>
