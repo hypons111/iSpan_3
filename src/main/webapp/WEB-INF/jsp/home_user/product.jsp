@@ -12,34 +12,19 @@
 <title>Fashi | Template</title>
 
 <!-- Google Font -->
-<link
-	href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 
 <!-- Css Styles -->
-<link rel="stylesheet" href="/css/shop/bootstrap.min.css"
-	type="text/css">
-<link rel="stylesheet" href="/css/shop/font-awesome.min.css"
-	type="text/css">
-<link rel="stylesheet" href="/css/shop/themify-icons.css"
-	type="text/css">
-<link rel="stylesheet" href="/css/shop/elegant-icons.css"
-	type="text/css">
-<link rel="stylesheet" href="/css/shop/owl.carousel.min.css"
-	type="text/css">
+<link rel="stylesheet" href="/css/shop/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="/css/shop/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" href="/css/shop/themify-icons.css" type="text/css">
+<link rel="stylesheet" href="/css/shop/elegant-icons.css" type="text/css">
+<link rel="stylesheet" href="/css/shop/owl.carousel.min.css" type="text/css">
 <link rel="stylesheet" href="/css/shop/nice-select.css" type="text/css">
-<link rel="stylesheet" href="/css/shop/jquery-ui.min.css"
-	type="text/css">
+<link rel="stylesheet" href="/css/shop/jquery-ui.min.css" type="text/css">
 <link rel="stylesheet" href="/css/shop/slicknav.min.css" type="text/css">
 <link rel="stylesheet" href="/css/shop/style.css" type="text/css">
 <link rel="stylesheet" href="/css/shop/product.css" type="text/css">
-<style>
-nav {
-	font-size: 20px;
-	font-weight: bolder;
-}
-</style>
-
 </head>
 
 
@@ -72,21 +57,14 @@ nav {
 					aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
-				<div class=" navbar-collapse justify-content-end "
-					id="navbarSupportedContent">
+				<div class="navbar-collapse justify-content-end" id="navbarSupportedContent">
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
-						<li class=""><a class="nav-link active" aria-current="page"
-							href="./index.html">首頁</a></li>
-						<li class=""><a class="nav-link" href="./product.html">所有商品</a>
-						</li>
-						<li class=""><a class="nav-link" href="./blog.html">活動總覽</a>
-						</li>
-						<li class=""><a class="nav-link" href="./blog.html">食譜總覽</a>
-						</li>
+						<li class=""><a class="nav-link active" aria-current="page" href="./index.html">首頁</a></li>
+						<li class=""><a class="nav-link" href="./product.html">所有商品</a></li>
+						<li class=""><a class="nav-link" href="./blog.html">活動總覽</a></li>
+						<li class=""><a class="nav-link" href="./blog.html">食譜總覽</a></li>
 						<li class=""><a class="nav-link" href="./login.html">登入</a></li>
-						<li class=""><a class="nav-link" href="./register.html">註冊</a>
-						</li>
-
+						<li class=""><a class="nav-link" href="./register.html">註冊</a></li>
 				</div>
 			</div>
 		</nav>
@@ -94,26 +72,26 @@ nav {
 	</header>
 	<!-- Header End -->
 
-
 	<!-- Product Shop Section Begin -->
 	<section class="product-shop spad page-details">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-2">
 					<div class="filter-widget">
-						<h4 class="fw-title">Categories</h4>
-						<!-- 插入產品種品名稱 -->
+						<h4 class="fw-title">產品種品</h4>
 						<ul class="filter-catagories"></ul>
 					</div>
 					<div class="filter-widget"></div>
 					<div class="filter-widget"></div>
 					<div class="filter-widget"></div>
 					<div class="filter-widget"></div>
-					<div class="filter-widget"></div>
+					<div class="filter-widget">
+					</div>
 				</div>
 				<div class="col-lg-10">
-					<!-- 插入產品資資 -->
-					<div class="row"></div>
+					<div class="row">
+						<!-- 插入產品資料 -->
+					</div>
 					<div class="product-tab">
 						<div class="col-lg-12">
 							<h5>Introduction</h5>
@@ -145,140 +123,15 @@ nav {
 					</div>
 				</div>
 			</div>
+
 			<div class="row">
-				<div class="col-lg-3 col-sm-6">
-					<div class="product-item">
-						<div class="pi-pic">
-							<!-- 							<img src="image/shop/products/women-1.jpg" alt=""> -->
-							<div class="sale">Sale</div>
-							<div class="icon">
-								<i class="icon_heart_alt"></i>
-							</div>
-							<ul>
-								<li class="w-icon active"><a href="#"><i
-										class="icon_bag_alt"></i></a></li>
-								<li class="quick-view"><a href="#">+ Quick View</a></li>
-								<li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-							</ul>
-						</div>
-						<div class="pi-text">
-							<div class="catagory-name">Coat</div>
-							<a href="#">
-								<h5>Pure Pineapple</h5>
-							</a>
-							<div class="product-price">
-								$14.00 <span>$35.00</span>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-sm-6">
-					<div class="product-item">
-						<div class="pi-pic">
-							<!-- 							<img src="image/shop/products/women-2.jpg" alt=""> -->
-							<div class="icon">
-								<i class="icon_heart_alt"></i>
-							</div>
-							<ul>
-								<li class="w-icon active"><a href="#"><i
-										class="icon_bag_alt"></i></a></li>
-								<li class="quick-view"><a href="#">+ Quick View</a></li>
-								<li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-							</ul>
-						</div>
-						<div class="pi-text">
-							<div class="catagory-name">Shoes</div>
-							<a href="#">
-								<h5>Guangzhou sweater</h5>
-							</a>
-							<div class="product-price">$13.00</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-sm-6">
-					<div class="product-item">
-						<div class="pi-pic">
-							<!-- 							<img src="image/shop/products/women-3.jpg" alt=""> -->
-							<div class="icon">
-								<i class="icon_heart_alt"></i>
-							</div>
-							<ul>
-								<li class="w-icon active"><a href="#"><i
-										class="icon_bag_alt"></i></a></li>
-								<li class="quick-view"><a href="#">+ Quick View</a></li>
-								<li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-							</ul>
-						</div>
-						<div class="pi-text">
-							<div class="catagory-name">Towel</div>
-							<a href="#">
-								<h5>Pure Pineapple</h5>
-							</a>
-							<div class="product-price">$34.00</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-sm-6">
-					<div class="product-item">
-						<div class="pi-pic">
-							<!-- 							<img src="image/shop/products/women-4.jpg" alt=""> -->
-							<div class="icon">
-								<i class="icon_heart_alt"></i>
-							</div>
-							<ul>
-								<li class="w-icon active"><a href="#"><i
-										class="icon_bag_alt"></i></a></li>
-								<li class="quick-view"><a href="#">+ Quick View</a></li>
-								<li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-							</ul>
-						</div>
-						<div class="pi-text">
-							<div class="catagory-name">Towel</div>
-							<a href="#">
-								<h5>Converse Shoes</h5>
-							</a>
-							<div class="product-price">$34.00</div>
-						</div>
-					</div>
-				</div>
+				<!-- 插入同類型產品資料 -->
 			</div>
 		</div>
 	</div>
 	<!-- Related Products Section End -->
 
-	<!-- Partner Logo Section Begin -->
-	<div class="partner-logo">
-		<div class="container">
-			<div class="logo-carousel owl-carousel">
-				<div class="logo-item">
-					<div class="tablecell-inner">
-						<!-- 						<img src="image/shop/logo-carousel/logo-1.png" alt=""> -->
-					</div>
-				</div>
-				<div class="logo-item">
-					<div class="tablecell-inner">
-						<!-- 						<img src="image/shop/logo-carousel/logo-2.png" alt=""> -->
-					</div>
-				</div>
-				<div class="logo-item">
-					<div class="tablecell-inner">
-						<!-- 						<img src="image/shop/logo-carousel/logo-3.png" alt=""> -->
-					</div>
-				</div>
-				<div class="logo-item">
-					<div class="tablecell-inner">
-						<!-- 						<img src="image/shop/logo-carousel/logo-4.png" alt=""> -->
-					</div>
-				</div>
-				<div class="logo-item">
-					<div class="tablecell-inner">
-						<!-- 						<img src="image/shop/logo-carousel/logo-5.png" alt=""> -->
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- Partner Logo Section End -->
+	
 
 	<!-- Footer Section Begin -->
 	<footer class="footer-section">
@@ -370,8 +223,7 @@ nav {
 	<script src="/js/shop/jquery.slicknav.js"></script>
 	<script src="/js/shop/owl.carousel.min.js"></script>
 	<script src="/js/shop/main.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"></script>
 	<script src="/js/shop/product.js"></script>
 </body>
 

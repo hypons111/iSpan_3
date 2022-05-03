@@ -214,13 +214,8 @@ nav {
 								<div class="select-option">
 									<select class="sorting">
 										<option value="">Default Sorting</option>
-									</select> <select class="p-show">
-										<option value="">Show:</option>
 									</select>
 								</div>
-							</div>
-							<div class="col-lg-5 col-md-5 text-right">
-								<p>Show 01- 09 Of 36 Product</p>
 							</div>
 						</div>
 					</div>
@@ -233,40 +228,6 @@ nav {
 		</div>
 	</section>
 	<!-- Product Shop Section End -->
-
-	<!-- Partner Logo Section Begin -->
-	<div class="partner-logo">
-		<div class="container">
-			<div class="logo-carousel owl-carousel">
-				<div class="logo-item">
-					<div class="tablecell-inner">
-						<img src="/image/shop/logo-carousel/logo-1.png" alt="">
-					</div>
-				</div>
-				<div class="logo-item">
-					<div class="tablecell-inner">
-						<img src="/image/shop/logo-carousel/logo-2.png" alt="">
-					</div>
-				</div>
-				<div class="logo-item">
-					<div class="tablecell-inner">
-						<img src="/image/shop/logo-carousel/logo-3.png" alt="">
-					</div>
-				</div>
-				<div class="logo-item">
-					<div class="tablecell-inner">
-						<img src="/image/shop/logo-carousel/logo-4.png" alt="">
-					</div>
-				</div>
-				<div class="logo-item">
-					<div class="tablecell-inner">
-						<img src="/image/shop/logo-carousel/logo-5.png" alt="">
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- Partner Logo Section End -->
 
 	<!-- Footer Section Begin -->
 	<footer class="footer-section">

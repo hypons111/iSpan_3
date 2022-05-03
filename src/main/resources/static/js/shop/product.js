@@ -5,13 +5,23 @@ const urlParams = new URLSearchParams(queryString)
 const targetProductId = urlParams.get('productid')
 const filterCatagories = document.querySelector(".filter-catagories")
 const productDetil = document.querySelector(".col-lg-10 .row")
+
+// 目標產品
 let targetProduct
+
+
 
 //setNodes
 let favoriteButton
 let sizeButtonGroup
 let newProductPrice
 let oldPproductPrice
+let incButton
+let decButton
+let smlValue
+let quantityValue
+
+
 
 axios.get(PRODUCT_TYPE_URL)
 	.then(response => {
@@ -22,10 +32,12 @@ axios.get(PRODUCT_TYPE_URL)
 axios.get(PRODUCT_URL)
 	.then(response => {
 		targetProduct = response.data.filter(product => product.productid === targetProductId)[0]
+		showRelativeProducts(response.data)
 		showProduct(targetProduct)
-		setNodes()
+		setNodes(targetProduct)
 		addsizeButtonGroupListener()
 		addFavoriteButtonListener()
+		setQuantityButtons()
 	})
 	.catch(error => { console.log(error) })
 
@@ -37,13 +49,53 @@ function showProductType(data) {
 	})
 }
 
+
+// 顯示同類型產品
+function showRelativeProducts(data) {
+	const relativeProductType = targetProduct.producttype
+	const RelativeProductRow = document.querySelector(".related-products .container").lastElementChild
+	let relativeProduct = data.filter(product => product.producttype === relativeProductType &&  product.productid !== targetProduct.productid)
+	let temp = ""
+	
+	for(i=0; i<=3; i++) {
+		temp += `<div class="col-lg-3 col-sm-6">
+					<div class="product-item">
+						<div class="pi-pic">
+							<img src="/image/product/${relativeProduct[i].productimage}" alt="">
+							<div class="sale">Sale</div>
+							<div class="icon">
+								<i class="icon_heart_alt"></i>
+							</div>
+							<ul>
+								<li class="w-icon active">
+									<a href="/home/product?productid=${relativeProduct[i].productid}"><i class="icon_bag_alt"></i></a>
+								</li>
+								<li class="quick-view"><a href="/home/product?productid=${relativeProduct[i].productid}">+ Quick View</a></li>
+		
+							</ul>
+						</div>
+						<div class="pi-text">
+							<div class="catagory-name">${relativeProduct[i].productname}</div>
+							<a href="#">
+								<h5>Pure Pineapple</h5>
+							</a>
+							<div class="product-price">$${relativeProduct[i].productprice}
+								<span>$${relativeProduct[i].productprice * 10}</span>
+							</div>
+						</div>
+					</div>
+				</div>`
+	}
+	RelativeProductRow.innerHTML = temp
+}
+
+
 // 顯示產品
 function showProduct(product) {
 	productDetil.innerHTML += `
 						<div class="col-lg-6">
 							<div class="product-pic-zoom">
 								<img class="product-big-img" src="/image/product/${product.productimage}" alt="">
-
 							</div>
 						</div>
 						<div class="col-lg-6">
@@ -59,7 +111,8 @@ function showProduct(product) {
 								</div>
 								<div class="pd-desc">
 									<p>${product.productdescription}</p>
-									<h4>$${product.productprice} <span>$${product.productprice * 100}</span></h4>
+									<h4>$${product.productprice}</h4>
+									<span>原價 $<del>${product.productprice * 10}</del></span>
 								</div>
 								
 								<div class="pd-size-choose">
@@ -75,11 +128,12 @@ function showProduct(product) {
 								</div>
 								
 								<div class="quantity">
-									<div class="pro-qty">
-										<input type="text" value="1">
-									</div>
-									<a href="#" class="primary-btn pd-cart">Add To Cart</a>
-								</div>
+                                    <div class="pro-qty"><span class="dec qtybtn">-</span>
+                                        <input type="text" value="1">
+                                    <span class="inc qtybtn">+</span></div>
+                                    <a href="#" class="primary-btn pd-cart">Add To Cart</a>
+                                </div>
+								
 								<ul class="pd-tags">
 									<li><span>CATEGORIES</span>: More Accessories, Wallets &
 										Cases</li>
@@ -91,27 +145,57 @@ function showProduct(product) {
 }
 
 
-function setNodes() {
+// 設定參數
+function setNodes(targetProduct) {
 	sizeButtonGroup = document.querySelector(".pd-size-choose")
 	newProductPrice = document.querySelector(".pd-desc h4")
 	oldProductPrice = document.querySelector(".pd-desc span")
 	favoriteButton = document.querySelector("#favorite")
+	incButton = document.querySelector(".inc")
+	decButton = document.querySelector(".dec")
+	quantityValue = document.querySelector(".quantity input")
 }
 
-// sml button Listener
+
+
+// sml 按鈕 Listener
 function addsizeButtonGroupListener() {
 	sizeButtonGroup.addEventListener("click", event => {
 		if(event.target.parentElement.classList[0] === "sc-item") {
-			newProductPrice.innerText = "$" + targetProduct.productprice * event.target.value
+			smlValue = event.target.value
+			
+			getTotalPrice(targetProduct.productprice, smlValue, quantityValue.value)
 		}
 	})
 }
 
-// favorite button Listener
+
+// 數量按鈕 listener
+function setQuantityButtons() {
+	incButton.addEventListener("click", event => {
+			quantityValue.value ++
+			newProductPrice.innerText = "$" + targetProduct.productprice * quantityValue.value
+			getTotalPrice(targetProduct.productprice, smlValue, quantityValue.value)
+	})
+	decButton.addEventListener("click", event => {
+		if(quantityValue.value > 1) {
+			quantityValue.value --
+			getTotalPrice(targetProduct.productprice, smlValue, quantityValue.value)
+		}
+	})
+}
+
+
+function getTotalPrice(oriPrice, size, quantity) {
+	newProductPrice.innerText = "$" + oriPrice * size * quantity
+	document.querySelector(".pd-desc").lastElementChild.innerHTML = `原價 $<del>${oriPrice * size * quantity * 10}</del>`
+}
+
+
+// favorite 按鈕 Listener
 function addFavoriteButtonListener () {
 	favoriteButton.addEventListener("click", event => {
 		event.preventDefault()
-		console.log(targetProduct.productid)
 		
 		let formData = new FormData()
 		formData.append('productid', targetProduct.productid)
@@ -123,7 +207,6 @@ function addFavoriteButtonListener () {
 			headers: { 'Content-Type': 'multipart/form-data' }
 		})
 		.then(response => {
-//			location.href = "/admin/product/productindex"
 			console.log(response)
 		})
 		.catch(error => {
