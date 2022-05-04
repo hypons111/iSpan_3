@@ -26,7 +26,7 @@ function showProductType(data) {
 axios.get(PRODUCT_URL)
 	.then(response => {
 		allProductList = response.data
-		currentProductList = response.data
+		setFilteredProductList(response.data)
 		showProduct(sorting())
 		showPriceRange()
 		addSortButtonListener()
@@ -34,9 +34,22 @@ axios.get(PRODUCT_URL)
 	.catch(error => { console.log(error) })
 
 
+// 取得目標產品
+function setFilteredProductList(data) {
+	filteredProductList = data.filter(product => product.productstate == true)
+	currentProductList = filteredProductList
+}
+
+
 // 顯示產品
 function showProduct(data) {
+
 	productListRow.innerHTML = ""
+	
+	if(data.length === 0) {
+		productListRow.innerHTML += `<h3>沒有產品</h3>`
+		return 0
+	}
 	
 	data.forEach(product => {
 		productListRow.innerHTML += `
