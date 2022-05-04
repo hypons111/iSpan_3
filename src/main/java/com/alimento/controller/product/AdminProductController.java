@@ -135,16 +135,15 @@ public class AdminProductController {
 
 		return new ModelAndView("redirect:/admin/product/productindex");
 	}
-			
 
 	@PutMapping("/batch")
 	@ResponseBody
-	public void batch(
-			@RequestParam("newStock") int newStock, @RequestParam("stockEdit") String stockEdit,
+	public void batch(@RequestParam("newStock") int newStock, @RequestParam("stockEdit") String stockEdit,
 			@RequestParam("newCost") double newCost, @RequestParam("costEdit") String costEdit,
 			@RequestParam("newPrice") double newPrice, @RequestParam("priceEdit") String priceEdit,
-			@RequestParam(required=false,  name="newState") boolean newState,
+			@RequestParam("newState") boolean newState, @RequestParam("stateEditSwitch") boolean stateEditSwitch,
 			@RequestParam("batchList") List<Integer> batchList) {
+
 		for (int i = 0; i < batchList.size(); i++) {
 
 			Optional<Product> product = productService.findById(batchList.get(i));
@@ -177,13 +176,66 @@ public class AdminProductController {
 				product.get().setProductprice(oldPrice - (oldPrice * (newPrice / 100)));
 			}
 			
-			if (newState == true || newState == false) {
+			if (stateEditSwitch == true) {
 				product.get().setProductstate(newState);
 			}
-
+			
 			productService.save(product.get());
 		}
 	}
+
+
+//	@PutMapping("/batch")
+//	@ResponseBody
+//	public void batch(
+//			@RequestParam("newStock") int newStock, @RequestParam("stockEdit") String stockEdit,
+//			@RequestParam("newCost") double newCost, @RequestParam("costEdit") String costEdit,
+//			@RequestParam("newPrice") double newPrice, @RequestParam("priceEdit") String priceEdit,
+//			@RequestParam(required=false,  name="newState") boolean newState,
+//			@RequestParam("batchList") List<Integer> batchList) {
+//		for (int i = 0; i < batchList.size(); i++) {
+//
+//			Optional<Product> product = productService.findById(batchList.get(i));
+//
+//			int oldStock = product.get().getProductstock();
+//			double oldCost = product.get().getProductcost();
+//			double oldPrice = product.get().getProductprice();
+//
+//			if (stockEdit.equals("=")) {
+//				product.get().setProductstock(newStock);
+//			} else if (stockEdit.equals("+")) {
+//				product.get().setProductstock(oldStock + newStock);
+//			} else if (stockEdit.equals("-")) {
+//				product.get().setProductstock(oldStock - newStock);
+//			}
+//
+//			if (costEdit.equals("=")) {
+//				product.get().setProductcost(newCost);
+//			} else if (costEdit.equals("+")) {
+//				product.get().setProductcost(oldCost + (oldCost * (newCost / 100)));
+//			} else if (costEdit.equals("-")) {
+//				product.get().setProductcost(oldCost - (oldCost * (newCost / 100)));
+//			}
+//
+//			if (priceEdit.equals("=")) {
+//				product.get().setProductprice(newPrice);
+//			} else if (priceEdit.equals("+")) {
+//				product.get().setProductprice(oldPrice + (oldPrice * (newPrice / 100)));
+//			} else if (priceEdit.equals("-")) {
+//				product.get().setProductprice(oldPrice - (oldPrice * (newPrice / 100)));
+//			}
+//			
+//			if (newState == true || newState == false) {
+//				System.out.println(newState);
+//				System.out.println(newState);
+//				System.out.println(newState);
+//				System.out.println(newState);
+//				product.get().setProductstate(newState);
+//			}
+//
+//			productService.save(product.get());
+//		}
+//	}
 
 	///////////////////////////////////////////////////////////////////////////
 

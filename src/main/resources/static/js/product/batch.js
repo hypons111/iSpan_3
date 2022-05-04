@@ -198,14 +198,17 @@ function getProductList() {
 function submitValues() {
 
 	if (window.confirm("確定要修改嗎?")) {
-
-		let productstate = false
-
-		if (document.getElementById("productstate")) {
-			if (document.getElementById("productstate").checked) {
-				productstate = true
-			}
+		
+	let productstate = false
+	let stateEditSwitch = false
+	
+	if (document.getElementById("productstate")) {
+			stateEditSwitch = true
+		if (document.getElementById("productstate").checked) {
+			productstate = true
 		}
+	}
+		
 
 		let formData = new FormData()
 		
@@ -228,6 +231,7 @@ function submitValues() {
 		}
 
 		formData.append("newState", productstate)
+		formData.append("stateEditSwitch", stateEditSwitch)
 
 		formData.append("stockEdit", stockEdit.value)
 		formData.append("costEdit", costEdit.value)
