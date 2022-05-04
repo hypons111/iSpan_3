@@ -20,6 +20,7 @@ let incButton
 let decButton
 let smlValue = 1
 let quantityValue
+let addToCartButton
 
 
 
@@ -38,6 +39,7 @@ axios.get(PRODUCT_URL)
 		addsizeButtonGroupListener()
 		addFavoriteButtonListener()
 		setQuantityButtons()
+		addAddToCardListener()
 	})
 	.catch(error => { console.log(error) })
 
@@ -104,11 +106,6 @@ function showProduct(product) {
 									<h3>${product.productname}</h3>
 									<a id="favorite" href="" class="heart-icon"><i class="icon_heart_alt"></i></a>
 								</div>
-								<div class="pd-rating">
-									<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-										class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-										class="fa fa-star-o"></i> <span>(5)</span>
-								</div>
 								<div class="pd-desc">
 									<p>${product.productdescription}</p>
 									<h4>$${product.productprice}</h4>
@@ -148,6 +145,7 @@ function setNodes(targetProduct) {
 	incButton = document.querySelector(".inc")
 	decButton = document.querySelector(".dec")
 	quantityValue = document.querySelector(".quantity input")
+	addToCartButton = document.querySelector(".pd-cart")
 }
 
 
@@ -181,7 +179,6 @@ function setQuantityButtons() {
 
 
 function getTotalPrice(oriPrice, size, quantity) {
-console.log(size)
 	newProductPrice.innerText = "$" + oriPrice * size * quantity
 	document.querySelector(".pd-desc").lastElementChild.innerHTML = `原價 $<del>${oriPrice * size * quantity * 10}</del>`
 }
@@ -207,5 +204,35 @@ function addFavoriteButtonListener () {
 		.catch(error => {
 			console.log(error)
 		})
+	})
+}
+
+
+
+function addAddToCardListener() {
+	addToCartButton.addEventListener("click", event => {
+	
+	let productList= [] 
+	
+	// 加入舊資料
+	let oldProducts = JSON.parse(localStorage.getItem("product"))
+	
+	if(oldProducts !== null){
+		oldProducts.forEach(oldProduct => {
+			productList.push(oldProduct)
+		})
+	}
+
+	// 加入新資料
+	targetProduct.productquantity = quantityValue.value
+	targetProduct.productsize = smlValue
+	productList.push(targetProduct)
+	
+
+	localStorage.setItem('product', JSON.stringify(productList));
+
+
+
+
 	})
 }
