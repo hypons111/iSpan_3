@@ -60,7 +60,7 @@
 				<div class="navbar-collapse justify-content-end" id="navbarSupportedContent">
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
 						<li class=""><a class="nav-link active" aria-current="page" href="./index.html">首頁</a></li>
-						<li class=""><a class="nav-link" href="./product.html">所有商品</a></li>
+						<li class=""><a class="nav-link" href="/home/shop/all">所有商品</a></li>
 						<li class=""><a class="nav-link" href="./blog.html">活動總覽</a></li>
 						<li class=""><a class="nav-link" href="./blog.html">食譜總覽</a></li>
 						<li class=""><a class="nav-link" href="./login.html">登入</a></li>
@@ -92,23 +92,6 @@
 					<div class="row">
 						<!-- 插入產品資料 -->
 					</div>
-<!-- 					<div class="product-tab"> -->
-<!-- 						<div class="col-lg-12"> -->
-<!-- 							<h5>產品介紹</h5> -->
-<!-- 							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, -->
-<!-- 								sed do eiusmod tempor incididunt ut labore et dolore magna -->
-<!-- 								aliqua. Ut enim ad minim veniam, quis nostrud exercitation -->
-<!-- 								ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis -->
-<!-- 								aute irure dolor in</p> -->
-<!-- 							<h5>產品特性</h5> -->
-<!-- 							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, -->
-<!-- 								sed do eiusmod tempor incididunt ut labore et dolore magna -->
-<!-- 								aliqua. Ut enim ad minim veniam, quis nostrud exercitation -->
-<!-- 								ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis -->
-<!-- 								aute irure dolor in</p> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-
 				</div>
 	</section>
 	<!-- Product Shop Section End -->
@@ -165,17 +148,6 @@
 						</ul>
 					</div>
 				</div>
-				<!-- <div class="col-lg-2">
-                    <div class="footer-widget">
-                        <h5>我的帳戶</h5>
-                        <ul>
-                            <li><a href="#"></a></li>
-                            <li><a href="#">Contact</a></li>
-                            <li><a href="#">Shopping Cart</a></li>
-                            <li><a href="#">Shop</a></li>
-                        </ul>
-                    </div>
-                </div> -->
 				<div class="col-lg-4">
 					<div class="newslatter-item">
 						<h5>獲得最新資訊</h5>
@@ -193,17 +165,14 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="copyright-text">
-							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 							Copyright &copy;
 							<script>
 								document.write(new Date().getFullYear());
 							</script>
 							All rights reserved<i class="fa fa-heart-o" aria-hidden="true"></i>
 							by <a href="https://colorlib.com" target="_blank">Group 3</a>
-							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 						</div>
 						<div class="payment-pic">
-							<!-- 							<img src="image/shop/ecpay_fb.png" alt="" width="80px"> -->
 						</div>
 					</div>
 				</div>

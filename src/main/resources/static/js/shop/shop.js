@@ -73,7 +73,7 @@ function showProduct(filteredProductList) {
 					</div>
 					<div class="pi-text">
 						<div class="catagory-name">${product.productname}</div>
-							<div class="product-price">$${product.productprice} <span>${product.productprice * 100}</span></div>
+							<div class="product-price">$${product.productprice} <span>${product.productprice * 10}</span></div>
 						</div>
 					</div>
 			</div>`

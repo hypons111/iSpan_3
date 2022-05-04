@@ -4,31 +4,28 @@
 <html lang="zxx">
 
 <head>
-<meta charset="UTF-8">
-<meta name="description" content="Fashi Template">
-<meta name="keywords" content="Fashi, unica, creative, html">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>Fashi | Template</title>
-
-<!-- Google Font -->
-<link
-	href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap"
-	rel="stylesheet">
-
-<!-- Css Styles -->
-<link rel="stylesheet" href="/css/shop/bootstrap.min.css" type="text/css">
-<link rel="stylesheet" href="/css/shop/font-awesome.min.css" type="text/css">
-<link rel="stylesheet" href="/css/shop/themify-icons.css" type="text/css">
-<link rel="stylesheet" href="/css/shop/elegant-icons.css" type="text/css">
-<link rel="stylesheet" href="/css/shop/owl.carousel.min.css" type="text/css">
-<link rel="stylesheet" href="/css/shop/nice-select.css" type="text/css">
-<link rel="stylesheet" href="/css/shop/jquery-ui.min.css" type="text/css">
-<link rel="stylesheet" href="/css/shop/slicknav.min.css" type="text/css">
-<link rel="stylesheet" href="/css/shop/style.css" type="text/css">
-<link rel="stylesheet" href="/css/shop/shop.css" type="text/css">
+	<meta charset="UTF-8">
+	<meta name="description" content="Fashi Template">
+	<meta name="keywords" content="Fashi, unica, creative, html">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Fashi | Template</title>
+	
+	<!-- Google Font -->
+	<link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+	
+	<!-- Css Styles -->
+	<link rel="stylesheet" href="/css/shop/bootstrap.min.css" type="text/css">
+	<link rel="stylesheet" href="/css/shop/font-awesome.min.css" type="text/css">
+	<link rel="stylesheet" href="/css/shop/themify-icons.css" type="text/css">
+	<link rel="stylesheet" href="/css/shop/elegant-icons.css" type="text/css">
+	<link rel="stylesheet" href="/css/shop/owl.carousel.min.css" type="text/css">
+	<link rel="stylesheet" href="/css/shop/nice-select.css" type="text/css">
+	<link rel="stylesheet" href="/css/shop/jquery-ui.min.css" type="text/css">
+	<link rel="stylesheet" href="/css/shop/slicknav.min.css" type="text/css">
+	<link rel="stylesheet" href="/css/shop/style.css" type="text/css">
+	<link rel="stylesheet" href="/css/shop/shop.css" type="text/css">
 </head>
-
 
 <body>
 	<!-- Page Preloder -->
@@ -59,94 +56,18 @@
 					aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
-				<div class=" navbar-collapse justify-content-end "
-					id="navbarSupportedContent">
+				<div class=" navbar-collapse justify-content-end" id="navbarSupportedContent">
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
-						<li class=""><a class="nav-link active" aria-current="page"
-							href="./index.html">首頁</a></li>
+						<li class=""><a class="nav-link active" aria-current="page" href="./index.html">首頁</a></li>
 						<li id="showAll" class=""><a class="nav-link" href="/home/shop/all">所有商品</a></li>
-						<li class=""><a class="nav-link" href="./blog.html">活動總覽</a>
-						</li>
-						<li class=""><a class="nav-link" href="./blog.html">食譜總覽</a>
-						</li>
+						<li class=""><a class="nav-link" href="./blog.html">活動總覽</a></li>
+						<li class=""><a class="nav-link" href="./blog.html">食譜總覽</a></li>
 						<li class=""><a class="nav-link" href="./login.html">登入</a></li>
-						<li class=""><a class="nav-link" href="./register.html">註冊</a>
-						</li>
-						<!-- <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle bg-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          Dropdown
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <li><a class="dropdown-item" href="#">Action</a></li>
-                          <li><a class="dropdown-item" href="#">Another action</a></li>
-                          <li><hr class="dropdown-divider"></li>
-                          <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                      </li> -->
-						<!-- <li class="nav-item">
-                        <a class="nav-link disabled bg-light" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                      </li>
-                    </ul>
-                    <form class="d-flex">
-                      <input class="form-control me-1" type="search" placeholder="Search" aria-label="Search">
-                      <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form> -->
+						<li class=""><a class="nav-link" href="./register.html">註冊</a></li>
+					</ul>
 				</div>
 			</div>
 		</nav>
-		<!-- <nav class="navbar fixed-top navbar-light bg-light py-3">
-                <div class="container d-flex flex-column flex-md-row justify-content-between">
-                  <a class="py-2" href="#">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="d-block mx-auto"><circle cx="12" cy="12" r="10"></circle><line x1="14.31" y1="8" x2="20.05" y2="17.94"></line><line x1="9.69" y1="8" x2="21.17" y2="8"></line><line x1="7.38" y1="12" x2="13.12" y2="2.06"></line><line x1="9.69" y1="16" x2="3.95" y2="6.06"></line><line x1="14.31" y1="16" x2="2.83" y2="16"></line><line x1="16.62" y1="12" x2="10.88" y2="21.94"></line></svg>
-                  </a>
-                  <li class="nav-item active"><a class="py-2 d-none d-md-inline-block" href="#">首頁</a></li>
-                  <a class="py-2 d-none d-md-inline-block" href="#">首頁</a>
-                  <a class="py-2 d-none d-md-inline-block" href="#">所有商品</a>
-                  <a class="py-2 d-none d-md-inline-block" href="#">活動總覽</a>
-                  <a class="py-2 d-none d-md-inline-block" href="#">食譜總覽</a>
-                  <a class="py-2 d-none d-md-inline-block" href="#">購物車</a>
-                  <a class="py-2 d-none d-md-inline-block" href="#">登入</a>
-                  <a class="py-2 d-none d-md-inline-block" href="#">註冊</a>
-                </div>
-              </nav> -->
-		<!-- <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand col-6" href="#">Navbar</a>
-                <div class="collapse navbar-collapse" >
-                    <ul class="navbar-nav mr-auto me-auto mb-lg-0">
-                    <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                    </form>
-                    <li class="nav-item active ">
-                        <a class="nav-link bg-light " href="#">首頁</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link bg-light" href="#">所有商品</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link bg-light" href="#">活動總覽</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link bg-light" href="#">食譜總覽</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link bg-light dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link  bg-light " href="#">Disabled</a>
-                    </li>
-                    </ul>
-                    
-                </div>
-            </nav> -->
 	</header>
 	<!-- Header End -->
 

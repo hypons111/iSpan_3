@@ -26,10 +26,10 @@ function showProductType(data) {
 axios.get(PRODUCT_URL)
 	.then(response => {
 		allProductList = response.data
-		showProduct(allProductList)
-		showPriceRange(allProductList)
-		addSortButtonListener(currentProductList)
-
+		currentProductList = response.data
+		showProduct(sorting())
+		showPriceRange()
+		addSortButtonListener()
 	})
 	.catch(error => { console.log(error) })
 
@@ -56,7 +56,7 @@ function showProduct(data) {
 					</div>
 					<div class="pi-text">
 						<div class="catagory-name">${product.productname}</div>
-							<div class="product-price">$${product.productprice} <span>${product.productprice * 100}</span></div>
+							<div class="product-price">$${product.productprice} <span>${product.productprice * 10}</span></div>
 						</div>
 					</div>
 			</div>`
@@ -65,14 +65,14 @@ function showProduct(data) {
 
 
 // 顯示價錢範圍
-function showPriceRange(data) {
+function showPriceRange() {
 	const price = document.querySelector('#price')
 	const priceResult = document.querySelector('#priceResult')
 	
 	let min = 99999
 	let max = 0
 	
-	data.filter(product => {
+	allProductList.filter(product => {
 		if(product.productprice < min) {
 			min = product.productprice
 		}
@@ -88,7 +88,7 @@ function showPriceRange(data) {
 	slider.addEventListener('click', event => {
 		if(event.target.id === "price") {
 			event.target.nextElementSibling.value = event.target.value	
-			let priceFilterdProductList = data.filter(product => product.productprice <= event.target.nextElementSibling.value)
+			let priceFilterdProductList = allProductList.filter(product => product.productprice <= event.target.nextElementSibling.value)
 			currentProductList = priceFilterdProductList
 			showProduct(sorting())
 		}
@@ -96,7 +96,7 @@ function showPriceRange(data) {
 	
 	priceResult.addEventListener('input', event => {
 		event.target.previousElementSibling.value = event.target.value	
-		let priceFilterdProductList = data.filter(product => product.productprice <= event.target.value)
+		let priceFilterdProductList = allProductList.filter(product => product.productprice <= event.target.value)
 		currentProductList = priceFilterdProductList
 		showProduct(sorting())
 	})
@@ -134,16 +134,3 @@ function sorting() {
 		}
 }
 
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-// show all button
-//function addShowAllButtonListener() {
-//	const showAllButton = document.querySelector("#showAll")
-//	showAllButton.addEventListener("click", event => {
-//		event.preventDefault()
-//		showProduct(allProductList)
-//	})
-//}
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
