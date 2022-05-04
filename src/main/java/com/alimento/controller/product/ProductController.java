@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class ProductController {
 
 	@GetMapping("/shop")
-	public String shop() {
+	public String showAll() {
 		return "home_user/shop";
 	}
 	
@@ -23,6 +23,11 @@ public class ProductController {
 	public String product() {
 		return "home_user/product";
 	}
+
+//	@GetMapping("/showAll")
+//	public String showAll() {
+//		return "home_user/shop";
+//	}
 	
 	@PostMapping("/favorite")
 	@ResponseBody
@@ -38,8 +43,6 @@ public class ProductController {
 			String memberid=(String)login;
 			return "1";
 		}
-		
-		
 	}
 
 }

@@ -64,8 +64,7 @@
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
 						<li class=""><a class="nav-link active" aria-current="page"
 							href="./index.html">首頁</a></li>
-						<li class=""><a class="nav-link" href="./product.html">所有商品</a>
-						</li>
+<!-- 						<li id="showAll" class=""><a class="nav-link" href="./product.html">所有商品</a></li> -->
 						<li class=""><a class="nav-link" href="./blog.html">活動總覽</a>
 						</li>
 						<li class=""><a class="nav-link" href="./blog.html">食譜總覽</a>

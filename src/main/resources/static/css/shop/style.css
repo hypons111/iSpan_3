@@ -1712,8 +1712,10 @@ ol {
   Product Shop
 -----------------------*/
 
+
+
 .product-shop {
-	padding-top: 80px;
+	padding-top: 0px;
 	padding-bottom: 80px;
 }
 

@@ -92,22 +92,22 @@
 					<div class="row">
 						<!-- 插入產品資料 -->
 					</div>
-					<div class="product-tab">
-						<div class="col-lg-12">
-							<h5>產品介紹</h5>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-								sed do eiusmod tempor incididunt ut labore et dolore magna
-								aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-								ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-								aute irure dolor in</p>
-							<h5>產品特性</h5>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-								sed do eiusmod tempor incididunt ut labore et dolore magna
-								aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-								ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-								aute irure dolor in</p>
-						</div>
-					</div>
+<!-- 					<div class="product-tab"> -->
+<!-- 						<div class="col-lg-12"> -->
+<!-- 							<h5>產品介紹</h5> -->
+<!-- 							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, -->
+<!-- 								sed do eiusmod tempor incididunt ut labore et dolore magna -->
+<!-- 								aliqua. Ut enim ad minim veniam, quis nostrud exercitation -->
+<!-- 								ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis -->
+<!-- 								aute irure dolor in</p> -->
+<!-- 							<h5>產品特性</h5> -->
+<!-- 							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, -->
+<!-- 								sed do eiusmod tempor incididunt ut labore et dolore magna -->
+<!-- 								aliqua. Ut enim ad minim veniam, quis nostrud exercitation -->
+<!-- 								ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis -->
+<!-- 								aute irure dolor in</p> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
 
 				</div>
 	</section>

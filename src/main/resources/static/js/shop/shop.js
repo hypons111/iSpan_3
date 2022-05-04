@@ -9,8 +9,9 @@ const slider = document.querySelector('.slider')
 const sortButton = document.querySelector('.nice-select')
 let sortStates = "ASC"
 
-let filteredProductList
-let currentProductList
+let allProductList			// 全部產品
+let filteredProductList		// 目標類型全部產品
+let currentProductList		// 現在畫面上的產品
 
 axios.get(PRODUCT_TYPE_URL)
 	.then(response => {
@@ -28,10 +29,12 @@ function showProductType(data) {
 
 axios.get(PRODUCT_URL)
 	.then(response => {
+		allProductList = response.data
 		setFilteredProductList(response.data)
 		showProduct(sorting())
-		showPriceRange(currentProductList)
+		showPriceRange(filteredProductList)
 		addSortButtonListener(currentProductList)
+		addShowAllButtonListener()
 	})
 	.catch(error => { console.log(error) })
 
@@ -78,13 +81,14 @@ function showPriceRange(data) {
 	const price = document.querySelector('#price')
 	const priceResult = document.querySelector('#priceResult')
 	
-	
 	let min = 99999
 	let max = 0
+	
 	data.filter(product => {
 		if(product.productprice < min) {
 			min = product.productprice
-		} else if(product.productprice > max) {
+		}
+		if(product.productprice > max) {
 			max = product.productprice
 		}
 	})
@@ -92,7 +96,6 @@ function showPriceRange(data) {
 	price.max = max
 	price.value = max
 	priceResult.value = max
-	
 		
 	slider.addEventListener('click', event => {
 		if(event.target.id === "price") {
@@ -109,8 +112,6 @@ function showPriceRange(data) {
 		currentProductList = priceFilterdProductList
 		showProduct(sorting())
 	})
-	
-	
 }
 
 
@@ -144,3 +145,17 @@ function sorting() {
 			return currentProductList
 		}
 }
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// show all button
+//function addShowAllButtonListener() {
+//	const showAllButton = document.querySelector("#showAll")
+//	showAllButton.addEventListener("click", event => {
+//		event.preventDefault()
+//		showProduct(allProductList)
+//	})
+//}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
