@@ -311,7 +311,7 @@
 	<script src="/js/shop/jquery.slicknav.js"></script>
 	<script src="/js/shop/owl.carousel.min.js"></script>
 	<script src="/js/shop/main.js"></script>
-	<script src="/js/shop/shop.js"></script>
+	<script src="/js/shop/shopAll.js"></script>
 </body>
 
 </html>

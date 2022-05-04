@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class ProductController {
 
 	@GetMapping("/shop")
-	public String showAll() {
+	public String shop() {
 		return "home_user/shop";
 	}
 	
@@ -24,10 +24,10 @@ public class ProductController {
 		return "home_user/product";
 	}
 
-//	@GetMapping("/showAll")
-//	public String showAll() {
-//		return "home_user/shop";
-//	}
+	@GetMapping("/shop/all")
+	public String showAll() {
+		return "home_user/shopAll";
+	}
 	
 	@PostMapping("/favorite")
 	@ResponseBody

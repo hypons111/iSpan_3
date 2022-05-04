@@ -56,33 +56,36 @@ function showRelativeProducts(data) {
 	const RelativeProductRow = document.querySelector(".related-products .container").lastElementChild
 	let relativeProduct = data.filter(product => product.producttype === relativeProductType &&  product.productid !== targetProduct.productid)
 	let temp = ""
+	try {
+		for(i=0; i<=3; i++) {
+			temp += `<div class="col-lg-3 col-sm-6">
+						<div class="product-item">
+							<div class="pi-pic">
+								<img src="/image/product/${relativeProduct[i].productimage}" alt="">
+								<div class="sale">Sale</div>
+								<div class="icon">
+									<i class="icon_heart_alt"></i>
+								</div>
+								<ul>
+									<li class="w-icon active">
+										<a href="/home/product?productid=${relativeProduct[i].productid}"><i class="icon_bag_alt"></i></a>
+									</li>
+									<li class="quick-view"><a href="/home/product?productid=${relativeProduct[i].productid}">+ Quick View</a></li>
+			
+								</ul>
+							</div>
+							<div class="pi-text">
+								<div class="catagory-name">${relativeProduct[i].productname}</div>
+								<div class="product-price">$${relativeProduct[i].productprice}
+									<span>原價 $<del>${relativeProduct[i].productprice * 10}</del></span>
+								</div>
+							</div>
+						</div>
+					</div>`
+		}
+	} catch {}
 	
-	for(i=0; i<=3; i++) {
-		temp += `<div class="col-lg-3 col-sm-6">
-					<div class="product-item">
-						<div class="pi-pic">
-							<img src="/image/product/${relativeProduct[i].productimage}" alt="">
-							<div class="sale">Sale</div>
-							<div class="icon">
-								<i class="icon_heart_alt"></i>
-							</div>
-							<ul>
-								<li class="w-icon active">
-									<a href="/home/product?productid=${relativeProduct[i].productid}"><i class="icon_bag_alt"></i></a>
-								</li>
-								<li class="quick-view"><a href="/home/product?productid=${relativeProduct[i].productid}">+ Quick View</a></li>
-		
-							</ul>
-						</div>
-						<div class="pi-text">
-							<div class="catagory-name">${relativeProduct[i].productname}</div>
-							<div class="product-price">$${relativeProduct[i].productprice}
-								<span>原價 $<del>${relativeProduct[i].productprice * 10}</del></span>
-							</div>
-						</div>
-					</div>
-				</div>`
-	}
+	
 	RelativeProductRow.innerHTML = temp
 }
 

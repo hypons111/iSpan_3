@@ -1,8 +1,5 @@
 const PRODUCT_URL = "http://localhost:8081/admin/product/productjson"
 const PRODUCT_TYPE_URL = "http://localhost:8081/admin/product/producttypejson"
-const queryString = window.location.search
-const urlParams = new URLSearchParams(queryString)
-const targetProducTtype = urlParams.get('producttypename')
 const filterCatagories = document.querySelector(".filter-catagories")
 const productListRow = document.querySelector(".product-list .row")
 const slider = document.querySelector('.slider')
@@ -10,7 +7,6 @@ const sortButton = document.querySelector('.nice-select')
 let sortStates = "ASC"
 
 let allProductList			// 全部產品
-let filteredProductList		// 目標類型全部產品
 let currentProductList		// 現在畫面上的產品
 
 axios.get(PRODUCT_TYPE_URL)
@@ -30,32 +26,19 @@ function showProductType(data) {
 axios.get(PRODUCT_URL)
 	.then(response => {
 		allProductList = response.data
-		setFilteredProductList(response.data)
-		showProduct(sorting())
-		showPriceRange(filteredProductList)
+		showProduct(allProductList)
+		showPriceRange(allProductList)
 		addSortButtonListener(currentProductList)
 
 	})
 	.catch(error => { console.log(error) })
 
 
-// 取得目標產品
-function setFilteredProductList(data) {
-	filteredProductList = data.filter(product => product.producttype === targetProducTtype && product.productstate == true)
-	currentProductList = filteredProductList
-}
-
-
 // 顯示產品
-function showProduct(filteredProductList) {
+function showProduct(data) {
 	productListRow.innerHTML = ""
 	
-	if(filteredProductList.length === 0) {
-		productListRow.innerHTML += `<h3>沒有產品</h3>`
-		return 0
-	}
-	
-	filteredProductList.forEach(product => {
+	data.forEach(product => {
 		productListRow.innerHTML += `
 			<div class="col-lg-4 col-sm-6">
 				<div class="product-item">
@@ -151,3 +134,16 @@ function sorting() {
 		}
 }
 
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// show all button
+//function addShowAllButtonListener() {
+//	const showAllButton = document.querySelector("#showAll")
+//	showAllButton.addEventListener("click", event => {
+//		event.preventDefault()
+//		showProduct(allProductList)
+//	})
+//}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
