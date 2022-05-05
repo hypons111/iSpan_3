@@ -199,10 +199,14 @@ function addFavoriteButtonListener () {
 			headers: { 'Content-Type': 'multipart/form-data' }
 		})
 		.then(response => {
-			console.log(response)
+			if(response.data === 0) {
+				location.href = "/home/shop/all"	
+			} 
+//			else {
+//				console.log(response.data)			
+//			}
 		})
 		.catch(error => {
-			console.log(error)
 		})
 	})
 }
