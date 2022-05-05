@@ -81,7 +81,7 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="breadcrumb-text">
-						<a href="#"><i class="fa fa-home"></i> Home</a> <span>Shop</span>
+						<a href="#"><i class="fa fa-home"></i> Home</a> <span>收藏商品</span>
 					</div>
 				</div>
 			</div>
