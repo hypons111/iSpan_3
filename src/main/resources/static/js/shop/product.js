@@ -232,11 +232,7 @@ function addAddToCardListener() {
 	targetProduct.productsize = smlValue
 	productList.push(targetProduct)
 	
-
 	localStorage.setItem('product', JSON.stringify(productList));
-
-
-
 
 	})
 }

@@ -1,5 +1,7 @@
 package com.alimento.controller.product;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.websocket.server.PathParam;
 
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alimento.model.product.Favorite;
 import com.alimento.model.product.FavoriteService;
+import com.alimento.model.product.Product;
 import com.alimento.model.product.ProductService;
 
 @Controller
@@ -37,6 +40,23 @@ public class ProductController {
 		return "home_user/shopAll";
 	}
 	
+	
+
+	///////////////////////////////////////////////////////////////////////////////
+	
+	@GetMapping("/favorite")
+	public String favorite() {
+		return "home_user/favorite";
+	}
+	
+	@GetMapping("/favoritejson")
+	@ResponseBody
+	public List<Favorite> findAllProduct() {
+		return favoriteService.findAll();
+	}
+	
+	///////////////////////////////////////////////////////////////////////////////
+	
 	@PostMapping("/favorite")
 	@ResponseBody
 	public String favproduct(HttpServletRequest request, @RequestParam("productid") String productid) {
@@ -46,6 +66,7 @@ public class ProductController {
 		System.out.println(productid);
 		System.out.println((String)login);
 		
+		login = 1001;
 	
 		if(login == null) {
 			return "0";

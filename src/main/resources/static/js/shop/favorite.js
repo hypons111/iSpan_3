@@ -1,61 +1,68 @@
+const FAVORITE_URL = "http://localhost:8081/home/favoritejson"
 const PRODUCT_URL = "http://localhost:8081/admin/product/productjson"
 const PRODUCT_TYPE_URL = "http://localhost:8081/admin/product/producttypejson"
-const queryString = window.location.search
-const urlParams = new URLSearchParams(queryString)
-const targetProducTtype = urlParams.get('producttypename')
-const filterCatagories = document.querySelector(".filter-catagories")
+const filterCatagories = document.querySelector("#productCatagories")
 const productListRow = document.querySelector(".product-list .row")
 const slider = document.querySelector('.slider')
 const sortButton = document.querySelector('.nice-select')
-
 let sortStates = "ASC"
 
-let allProductList			// 全部產品
-let filteredProductList		// 目標類型全部產品
-let currentProductList		// 現在畫面上的產品
 
-axios.get(PRODUCT_TYPE_URL)
+
+//////////////////////////////////////////
+
+// memberid 預設值是 1001
+// 如果要動態取得會員編號，請寫在第16行 "=" 後面，把預設的 1001 取代。
+const memberid = 1001
+
+//////////////////////////////////////////
+
+
+let allFavoriteList				// 全部會員的全部收藏
+let allProductList				// 全部產品
+let filteredProductList			// 1001 號會員全部收藏產品		
+let currentProductList			// 現在畫面上的產品
+
+
+axios.get(FAVORITE_URL)
 	.then(response => {
-		showProductType(response.data)
+		allFavoriteList = response.data.filter(product => product.memberid === memberid)
 	})
 	.catch(error => { console.log(error) })
-	
-// 顯示產品種類
-function showProductType(data) {
-	data.forEach(type => {
-		filterCatagories.innerHTML += `<li><a href="/home/shop/?producttypename=${type.producttypename}">${type.producttypename}</a></li>`
-	})
-}
-
 
 axios.get(PRODUCT_URL)
 	.then(response => {
 		allProductList = response.data
 		setFilteredProductList(response.data)
 		showProduct(sorting())
-		showPriceRange(filteredProductList)
-		addSortButtonListener(currentProductList)
+		showPriceRange()
+		addSortButtonListener()
 	})
 	.catch(error => { console.log(error) })
 
 
 // 取得目標產品
 function setFilteredProductList(data) {
-	filteredProductList = data.filter(product => product.producttype === targetProducTtype && product.productstate == true)
-	currentProductList = filteredProductList
+	let temp = []
+	for(let i=0; i<allFavoriteList.length; i++){
+		temp.push(data.filter(product => product.productid == allFavoriteList[i].productid))
+	}
+	filteredProductList = temp.flat()
+	currentProductList = filteredProductList.flat()
 }
 
 
 // 顯示產品
-function showProduct(filteredProductList) {
+function showProduct(data) {
+
 	productListRow.innerHTML = ""
 	
-	if(filteredProductList.length === 0) {
+	if(data.length === 0) {
 		productListRow.innerHTML += `<h3>沒有產品</h3>`
 		return 0
 	}
 	
-	filteredProductList.forEach(product => {
+	data.forEach(product => {
 		productListRow.innerHTML += `
 			<div class="col-lg-4 col-sm-6">
 				<div class="product-item">
@@ -82,14 +89,14 @@ function showProduct(filteredProductList) {
 
 
 // 顯示價錢範圍
-function showPriceRange(data) {
+function showPriceRange() {
 	const price = document.querySelector('#price')
 	const priceResult = document.querySelector('#priceResult')
 	
 	let min = 99999
 	let max = 0
 	
-	data.filter(product => {
+	filteredProductList.filter(product => {
 		if(product.productprice < min) {
 			min = product.productprice
 		}
@@ -97,6 +104,8 @@ function showPriceRange(data) {
 			max = product.productprice
 		}
 	})
+	
+
 	price.min = min
 	price.max = max
 	price.value = max
@@ -104,16 +113,16 @@ function showPriceRange(data) {
 		
 	slider.addEventListener('click', event => {
 		if(event.target.id === "price") {
-			event.target.nextElementSibling.value = event.target.value	
-			let priceFilterdProductList = data.filter(product => product.productprice <= event.target.nextElementSibling.value)
+			event.target.nextElementSibling.value = Math.ceil(event.target.value)
+			let priceFilterdProductList = filteredProductList.filter(product => product.productprice <= event.target.nextElementSibling.value)
 			currentProductList = priceFilterdProductList
 			showProduct(sorting())
 		}
 	})
 	
 	priceResult.addEventListener('input', event => {
-		event.target.previousElementSibling.value = event.target.value	
-		let priceFilterdProductList = data.filter(product => product.productprice <= event.target.value)
+		event.target.previousElementSibling.value = event.target.value
+		let priceFilterdProductList = filteredProductList.filter(product => product.productprice <= event.target.value)
 		currentProductList = priceFilterdProductList
 		showProduct(sorting())
 	})
@@ -150,3 +159,4 @@ function sorting() {
 			return currentProductList
 		}
 }
+
